@@ -1,0 +1,17 @@
+table.table-striped > tr > th > td{
+    border:  solid lightslategray;
+}
+
+th,td{
+  text-align: center;
+}
+#margin{
+   margin-left:13cm;
+}
+#align{
+  margin-left:0.5cm;
+}
+h4
+{
+ text-align: center;
+}

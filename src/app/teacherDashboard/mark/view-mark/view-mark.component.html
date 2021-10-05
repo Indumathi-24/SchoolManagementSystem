@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <h4><b><i>VIEWING MARK DETAILS</i></b></h4>
+    <form [formGroup]="ViewMarkForm" #saveSubjectClassForm (ngSubmit)=getStudentsMarks()>
+        <table class="table table-striped">
+
+            <tr>
+                <th>CLASSES</th>
+                <td><select class="custom select" class="form-control" name="classes" (change)=getSubjects()
+                        formControlName="classes">
+                        <option value="">Select Classes</option>
+                        <option *ngFor="let class of classList">{{class.standard}}-{{class.section}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>SUBJECTS</th>
+                <td><select class="custom select" class="form-control" name="subjectCode" formControlName="code">
+                        <option value="">Select Subjects</option>
+                        <option *ngFor="let subjectCode of subjectList">{{subjectCode}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>STUDENTS</th>
+                <td><select class="custom select" class="form-control" name="rollNo" formControlName="rollNo">
+                        <option value="">Select Students</option>
+                        <option *ngFor="let student of studentList">{{student.rollNo}}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button style="margin-left:15.25cm" type="submit" class="btn btn-success" value="SHOW STUDENTS MARKS">SHOW
+            STUDENTS MARKS</button>
+        <br>
+        <br>
+        <table *ngIf="length>0" style="margin-left:7cm;width:60%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ROLL NO</th>
+                    <th>NAME</th>
+                    <th>TERM 1</th>
+                    <th>TERM 2</th>
+                    <th>TERM 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{rollNo}}</td>
+                    <td>{{studentDetail?.name}}</td>
+                    <td>{{marks[2]}}</td>
+                    <td>{{marks[1]}}</td>
+                    <td>{{marks[0]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>

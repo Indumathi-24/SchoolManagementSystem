@@ -1,0 +1,28 @@
+<h4><b><i> ACADEMIC RECORDS </i></b></h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>TAMIL</th>
+            <th>ENGLISH</th>
+            <th>MATHS</th>
+            <th>SCIENCE</th>
+            <th>SOCIAL SCIENCE</th>
+            <th>TOTAL MARKS</th>
+            <th>TERM TYPE</th>
+            <th>RESULT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let mark of markList;let i=index">
+            <td>{{mark?.tamil}}</td>
+            <td>{{mark?.english}}</td>
+            <td>{{mark?.maths}}</td>
+            <td>{{mark?.science}}</td>
+            <td>{{mark?.socialScience}}</td>
+            <td> {{ marks[i] }}  </td>
+            <td>{{mark?.termType}}</td>
+            <td>{{mark?.result}}</td>
+        </tr>
+    </tbody>
+</table>
+

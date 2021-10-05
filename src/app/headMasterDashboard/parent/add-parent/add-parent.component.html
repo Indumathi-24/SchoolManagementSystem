@@ -1,0 +1,27 @@
+<div class="container-fluid">
+   <h4 style="text-align: center;"><b><i>ADDING PARENT DETAILS</i></b></h4>
+   <form [formGroup]="ParentForm" (ngSubmit)=saveParentDetails()>
+      <table class="table table-striped">
+         <tr>
+
+         <tr>
+            <th>FATHER NAME</th>
+            <td><input type="text" class="form-control" placeholder="Enter Father Name" name="fatherName"
+                  formControlName="fatherName"></td>
+         </tr>
+
+         <tr>
+            <th>MOTHER NAME</th>
+            <td><input type="text" class="form-control" placeholder="Enter Mother Name" name="motherName"
+                  formControlName="motherName"></td>
+         </tr>
+         <tr>
+            <th>CONTACT NO</th>
+            <td><input type="tel" class="form-control" placeholder="Enter Contact No" name="contactNo"
+                  formControlName="contactNo"></td>
+         </tr>
+         <tr>
+      </table>
+      <button id="margin" type="submit" class="btn btn-success">ADD</button>
+   </form>
+</div>

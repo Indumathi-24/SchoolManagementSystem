@@ -1,0 +1,26 @@
+
+table.table-striped > thead > tr > th{
+      border:  solid lightslategray;
+  }
+table.table-striped > tbody > tr > td{
+    border: solid lightslategray;
+    
+}
+th,td{
+    text-align: center;
+}
+
+table
+{
+    margin-left:7cm;
+    width:60%;
+}
+#margin
+{
+    margin-left: 14cm;
+}
+h4
+{
+    text-align: center;
+}
+

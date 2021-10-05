@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <h5><b><i>UPDATING CLASSROOM DETAILS</i> </b></h5>
+  <form (ngSubmit)="updatePersonalDetails()">
+    <table class="table table-striped">
+      <tr>
+        <th>NAME</th>
+        <td><input type="text" class="form-control" placeholder="Enter Name" name="roomNo" [(ngModel)]="student.name">
+        </td>
+
+      </tr>
+      <tr>
+        <th>DATEOFBIRTH</th>
+        <td><input type="date" class="form-control" name="standard" [(ngModel)]="student.dateOfBirth"></td>
+      </tr>
+
+      <tr>
+        <th rowspan="2">GENDER</th>
+        <td>
+          <input type="radio" name="gender" value="Male" [(ngModel)]="student.gender">
+          <label>MALE</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="radio" name="gender" value="Female" [(ngModel)]="student.gender">
+          <label>FEMALE</label>
+        </td>
+      </tr>
+
+      <tr>
+        <th>FATHER NAME</th>
+        <td><input type="text" class="form-control" name="fatherName" [(ngModel)]="parent.fatherName"></td>
+      </tr>
+
+      <tr>
+        <th>MOTHER NAME</th>
+        <td><input type="text" class="form-control" name="motherName" [(ngModel)]="parent.motherName"></td>
+      </tr>
+      <tr>
+        <th>CONTACT NO</th>
+        <td><input type="tel" class="form-control" name="contactNo" [(ngModel)]="parent.contactNo"></td>
+      </tr>
+
+      <tr>
+        <th>ADDRESS</th>
+        <td><textarea rows="2" cols="10" class="form-control" name="address" [(ngModel)]="student.address"></textarea>
+        </td>
+      </tr>
+
+    </table>
+    <button id="margin" type="submit" class="btn btn-success">UPDATE</button>
+    <button id="align" type="reset" (click)=cancel() class="btn btn-danger">CANCEL</button>
+  </form>
+</div>

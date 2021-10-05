@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <h4><b><i>STUDENT DETAILS</i></b></h4>
+    <form [formGroup]="ViewStudents" (ngSubmit)=getDetails()>
+        <table class="table table-striped">
+            <tr>
+                <th>STANDARD</th>
+                <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+                        <option value="">Select Standard</option>
+                        <option *ngFor="let standard of standardList">{{standard}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>SECTION</th>
+                <td><select class="custom select" class="form-control" name="section" (change)=getRoomNo()
+                        formControlName="section">
+                        <option value="">Select Section</option>
+                        <option *ngFor="let section of sectionList">{{section}}</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+        <button id="margin" type="submit" class="btn btn-success" value="VIEW STUDENTS">VIEW
+            STUDENTS</button>
+        <br>
+        <br>
+        <table *ngIf="length>0" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ROLL NO</th>
+                    <th>NAME</th>
+                    <th>DATEOFBIRTH</th>
+                    <th>GENDER</th>
+                    <th>ADDRESS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of studentList">
+                    <td>{{student.rollNo}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.dateOfBirth}}</td>
+                    <td>{{student.gender}}</td>
+                    <td>{{student.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>

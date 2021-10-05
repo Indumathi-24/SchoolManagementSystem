@@ -1,0 +1,39 @@
+<h4><b><i> PERSONAL DETAILS </i></b></h4>
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td><b>ROLL NO</b></td>
+            <td>{{student.rollNo}}</td>
+        </tr>
+        <tr>
+            <td><b>NAME</b></td>
+            <td>{{student.name}}</td>
+        </tr>
+        <tr>
+            <td><b>DATEOFBIRTH</b></td>
+            <td>{{student.dateOfBirth}}</td>
+        </tr>
+        <tr>
+            <td><b>GENDER</b></td>
+            <td>{{student.gender}}</td>
+        </tr>
+        <tr *ngFor="let parent of parents">
+            <td><b>FATHER NAME</b></td>
+            <td>{{parent.fatherName}}</td>
+        </tr>
+        <tr *ngFor="let parent of parents">
+            <td><b>MOTHER NAME</b></td>
+            <td>{{parent.motherName}}</td>
+        </tr>
+        <tr *ngFor="let parent of parents">
+            <td><b>CONTACT NO</b></td>
+            <td>{{parent.contactNo}}</td>
+        </tr>
+        <tr>
+            <td><b>ADDRESS</b></td>
+            <td>{{student.address}}</td>
+        </tr>
+
+    </tbody>
+</table>
+<button id="align" type=submit class="btn btn-primary" (click)=update()>UPDATE</button>

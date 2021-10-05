@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <h4><b><i>ADDING CLASSROOM DETAILS</i></b></h4>
+    <form [formGroup]="ClassRoomForm" #saveClassRoom (ngSubmit)=saveClassDetails()>
+        <table class="table table-striped">
+            <tr>
+                <th>ROOMNO</th>
+                <td><input type="number" class="form-control" placeholder="Enter RoomNo" name="roomNo"
+                        formControlName="roomNo"></td>
+            </tr>
+
+            <tr>
+                <th>STANDARD</th>
+                <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+                        <option value="">Select Standard</option>
+                        <option *ngFor="let standard of standardList">{{standard}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>SECTION</th>
+                <td><select class="custom select" class="form-control" name="section" formControlName="section">
+                        <option value="">Select Section</option>
+                        <option *ngFor="let section of sectionList">{{section}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button id="margin" type="submit" class="btn btn-success">ADD</button>
+                    <button id="margin" type="button" (click)=back() class="btn btn-primary">BACK</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

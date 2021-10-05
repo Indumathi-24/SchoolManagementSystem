@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <h4><b><i>VIEW RESULT DETAILS</i></b></h4>
+    <form [formGroup]="ViewStudentsResult" (ngSubmit)=getResultByClass()>
+            <table class="table table-striped">
+                <tr>
+                    <th>STANDARD</th>
+                    <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+                       <option value="">Select Standard</option>
+                        <option *ngFor = "let standard of standardList">{{standard}}</option>
+                     </select>
+                     </td>  
+                </tr> 
+                    <tr>
+                        <th>SECTION</th>
+                        <td><select class="custom select" class="form-control" name="section" (change) = getRoomNo() formControlName="section">
+                            <option value="">Select Section</option>
+                             <option *ngFor = "let section of sectionList">{{section}}</option>
+                          </select>
+                          </td>  
+                    </tr>
+            </table>
+            <button style="margin-left:15.25cm" type ="submit" class="btn btn-success" value="VIEW RESULTS">VIEW RESULTS</button>
+            <br>
+            <br>
+        <table *ngIf ="length>0"  class="table table-striped">
+        <thead>
+            <tr>
+                <th>ROLL NO</th>
+                <th>TERM1</th>
+                <th>TERM1 STATUS</th>
+                <th>TERM2</th>
+                <th>TERM2 STATUS</th>
+                <th>TERM3</th>
+                <th>TERM3 STATUS</th>
+                <th>RESULT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let result of resultList">
+                <td>{{result.student?.rollNo}}</td>
+                <td>{{result.term1}}</td>
+                <td>{{result.term1Status}}</td>
+                <td>{{result.term2}}</td>
+                <td>{{result.term2Status}}</td>
+                <td>{{result.term3}}</td>
+                <td>{{result.term3Status}}</td>
+                <td>{{result.result}}</td>
+            </tr>
+        </tbody>
+        </table>
+    </form>

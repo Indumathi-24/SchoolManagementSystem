@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h4><b><i>ASSIGNING SUBJECT TO TEACHERS</i></b></h4>
+    <form [formGroup]="TeacherSubjectForm" #saveTeacherSubjectForm (ngSubmit)=saveTeacherSubject()>
+        <table class="table table-striped">
+            <tr>
+                <th>STANDARD</th>
+                <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+                        <option value="">Select Standard</option>
+                        <option *ngFor="let standard of standardList">{{standard}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>SECTION</th>
+                <td><select class="custom select" class="form-control" name="section" (change)=getRoomNo()
+                        formControlName="section">
+                        <option value="">Select Section</option>
+                        <option *ngFor="let section of sectionList">{{section}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>SUBJECTS</th>
+                <td><select class="custom select" class="form-control" name="subjectCode" formControlName="subjectCode">
+                        <option value="">Select Subjects</option>
+                        <option *ngFor="let subject of subjectList">{{subject.code}}-{{subject.name}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th>TEACHERS</th>
+                <td><select class="custom select" class="form-control" name="teacherId" formControlName="teacherId">
+                        <option value="">Select Name</option>
+                        <option *ngFor="let teacher of teacherList">{{teacher.id}}-{{teacher.name}}</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+        <button id="margin" type="submit" class="btn btn-success">ADD</button>
+    </form>

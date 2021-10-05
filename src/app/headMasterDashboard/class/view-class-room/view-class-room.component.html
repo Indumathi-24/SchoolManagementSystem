@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <h4><b><i>CLASSROOM DETAILS</i></b></h4>
+    <table  class="table table-striped">
+<thead>
+    <tr>  
+        <th> ROOMNO</th>  
+        <th> STANDARD</th>  
+        <th> SECTION </th>   
+        <th> ACTION </th>
+    </tr>  
+</thead>  
+<tbody>  
+     <tr *ngFor="let classDetail of classList">  
+        <td>{{classDetail.roomNo}}</td>  
+        <td>{{classDetail.standard}}</td>  
+        <td>{{classDetail.section}}</td>
+        <td><button (click)="updateDetails(classDetail)" class="btn btn-primary">UPDATE</button></td>
+    </tr>
+</tbody>
+</table>
+  <button id="margin" type="submit" (click)=back() class="btn btn-success">BACK</button>
+</div>

@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <h4><b><i>VIEWING SUBJECT ASSIGNED DETAILS</i></b></h4>
+ <form [formGroup]="ViewSubjectClassForm" (ngSubmit) = getSubjectClass()>
+  <table  class="table table-striped">  
+    <tr>
+        <th>STANDARD</th>
+        <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+           <option value="">Select Standard</option>
+            <option *ngFor = "let standard of standardList">{{standard}}</option>
+         </select>
+         </td>  
+    </tr> 
+        <tr>
+            <th>SECTION</th>
+            <td><select class="custom select" class="form-control" name="section" (change) = getRoomNo() formControlName="section">
+                <option value="">Select Section</option>
+                 <option *ngFor = "let section of sectionList">{{section}}</option>
+              </select>
+              </td>  
+        </tr>
+    </table>
+    <button id=margin type ="submit" class="btn btn-success"  value="SHOW SUBJECTS">SHOW SUBJECTS</button>
+    <br>
+    <br>
+    <table *ngIf ="length>0" class="table table-striped">
+        <thead>
+            <tr>
+                <th>SUBJECT NAME</th>
+                <th>SUBJECT CODE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of subjectList">
+                <td>{{subject.name}}</td>
+                <td>{{subject.code}}</td>
+            </tr>
+        </tbody>
+        </table>
+ </form>

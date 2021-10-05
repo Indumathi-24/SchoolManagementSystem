@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h4><b><i>ADDING SUBJECT DETAILS</i></b></h4>
+  <form [formGroup]="AddSubjectForm" #saveSubjectForm (ngSubmit)=saveSubject()>
+    <table class="table table-striped">
+      <tr>
+        <th>CODE</th>
+        <td><input type="text" class="form-control" placeholder="Enter code" name="code" formControlName="code"></td>
+      </tr>
+
+      <tr>
+        <th>NAME</th>
+        <td><input type="text" class="form-control" placeholder="Enter name" name="name" formControlName="name"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button type="submit" class="btn btn-success">ADD</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+</div>

@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <h5><b><i>UPDATING CLASSROOM DETAILS</i> </b></h5>
+  <form (ngSubmit)="updatePersonalDetails()">
+    <table class="table table-striped">
+      <tr>
+        <th>NAME</th>
+        <td><input type="text" class="form-control" placeholder="Enter Name" name="roomNo"
+            [(ngModel)]="headMasterDetail.name">
+        </td>
+
+      </tr>
+      <tr>
+        <th>DATEOFBIRTH</th>
+        <td><input type="date" class="form-control" name="standard" [(ngModel)]="headMasterDetail.dateOfBirth"></td>
+      </tr>
+
+      <tr>
+        <th rowspan="2">GENDER</th>
+        <td>
+          <input type="radio" name="gender" value="Male" [(ngModel)]="headMasterDetail.gender">
+          <label>MALE</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="radio" name="gender" value="Female" [(ngModel)]="headMasterDetail.gender">
+          <label>FEMALE</label>
+        </td>
+      </tr>
+
+      <tr>
+        <th>QUALIFICATION</th>
+        <td><input type="text" class="form-control" name="fatherName" [(ngModel)]="headMasterDetail.qualification"></td>
+      </tr>
+
+      <tr>
+        <th>EMAIL</th>
+        <td><input type="text" class="form-control" name="motherName" [(ngModel)]="headMasterDetail.email"></td>
+      </tr>
+
+
+      <tr>
+        <th>ADDRESS</th>
+        <td><textarea rows="2" cols="10" class="form-control" name="address"
+            [(ngModel)]="headMasterDetail.address"></textarea></td>
+      </tr>
+
+      <tr>
+        <th>CONTACT NO</th>
+        <td><input type="tel" class="form-control" name="contactNo" [(ngModel)]="headMasterDetail.contactNo"></td>
+      </tr>
+
+    </table>
+    <button id="margin" type="submit" class="btn btn-success">UPDATE</button>
+    <button id="align" type="reset" (click)=cancel() class="btn btn-danger">CANCEL</button>
+  </form>
+</div>

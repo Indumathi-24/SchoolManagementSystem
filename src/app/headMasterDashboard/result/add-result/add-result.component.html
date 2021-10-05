@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <h4 style="text-align: center;"><b><i>ADDING RESULT DETAILS</i></b></h4>
+ <form [formGroup]="AddResultForm" (ngSubmit)=saveResultDetails()>
+  <table  style="margin-left:7cm;width:60%;"  class="table table-striped">  
+    <tr>
+        <th>ROOMNO</th>
+        <td><select class="custom select" class="form-control" name="roomNo" formControlName="roomNo" (change)=getStudents()>
+            <option value="">Select Room No</option>
+             <option *ngFor = "let classDetail of classList">{{classDetail.roomNo}}</option>
+          </select>
+          </td>   
+    </tr> 
+        <tr>
+        <th>STUDENT ROLL NO</th>
+        <td><select class="custom select" class="form-control" name="rollNo" formControlName="rollNo">
+            <option value="">Select Roll No</option>
+             <option *ngFor = "let studentDetail of studentList">{{studentDetail.rollNo}}</option>
+          </select>
+          </td>   
+         </tr> 
+
+         <tr>
+            <th>TERM1</th>
+            <td><input type="number" class="form-control" placeholder="Enter Term 1 Mark" name="term1" formControlName="term1"></td>
+         </tr> 
+
+         <tr>
+            <th>TERM2</th>
+            <td><input type="number" class="form-control" placeholder="Enter Term 2 Mark" name="term2" formControlName="term2"></td>
+         </tr> 
+
+         <tr>
+            <th>TERM3</th>
+            <td><input type="number" class="form-control" placeholder="Enter Term 3 Mark" name="term3" formControlName="term3"></td>
+         </tr> 
+    
+        <tr>
+          <td></td>
+          <td>
+        <button id ="margin" type="submit" class="btn btn-success">ADD</button>
+        <button id ="margin" type="button" (click)=back() class="btn btn-primary">BACK</button></td>
+          </tr>
+        </table>
+        </form>
+</div>    
+

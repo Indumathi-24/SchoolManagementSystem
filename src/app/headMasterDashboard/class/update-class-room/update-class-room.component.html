@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h4><b><i>UPDATING CLASSROOM DETAILS</i> </b></h4>
+  <form (ngSubmit)="updateClassDetails()">
+    <table class="table table-striped">
+      <tr>
+        <th>ROOM NO</th>
+        <td><input type="number" class="form-control" name="roomNo" [(ngModel)]="classDetail.roomNo"></td>
+      </tr>
+      
+      <tr>
+        <th>STANDARD</th>
+        <td><input type="text" class="form-control" name="standard" [(ngModel)]="classDetail.standard"></td>
+      </tr>
+
+      <tr>
+        <th>SECTION</th>
+        <td><input type="text" class="form-control" name="section" [(ngModel)]="classDetail.section"></td>
+      </tr>
+
+    </table>
+    <button id="margin" type="submit" class="btn btn-success">UPDATE</button>
+    <button id="align" type="reset" (click)=cancel() class="btn btn-danger">CANCEL</button>
+  </form>
+</div>

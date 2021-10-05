@@ -1,0 +1,25 @@
+.m-3 {
+    /* margin: 1rem!important; */
+    margin-left: 9cm !important;
+    margin-right:7cm !important;
+    /* width: 15cm; */
+}
+
+.card-text:last-child {
+    margin-bottom: 5;
+}
+label
+{
+ margin-left: 1cm;
+ text-align:left;
+}
+legend
+{
+ margin-left: 1cm;
+ text-align:left;  
+}
+
+h5
+{
+    text-align: center;
+}

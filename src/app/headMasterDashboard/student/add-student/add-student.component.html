@@ -1,0 +1,73 @@
+<div class="container-fluid">
+   <h4 style="text-align: center;"><b>ADDING STUDENT DETAILS</b></h4>
+   <form [formGroup]="StudentForm">
+      <table class="table table-striped">
+         <tr>
+            <th>ROLLNO</th>
+            <td><input type="number" class="form-control" placeholder="Enter RollNo" name="rollNo"
+                  formControlName="rollNo" required></td>
+               <div *ngIf="rollNo?.invalid && (rollNo?.dirty || rollNo?.touched)" class="alert alert-danger">
+
+                     <div *ngIf="rollNo?.errors?.required">
+                         RollNo is required.
+                     </div>
+                 </div>
+         </tr>
+
+         <tr>
+            <th>NAME</th>
+            <td><input type="text" class="form-control" placeholder="Enter Name" name="name" formControlName="name" required>
+            </td>
+         </tr>
+
+         <tr>
+            <th>DATEOFBIRTH</th>
+            <td><input type="date" class="form-control" placeholder="Enter DateOfBirth" name="dateOfBirth"
+                  formControlName="dateOfBirth" required></td>
+         </tr>
+
+         <tr>
+            <th rowspan="2"><label>GENDER</label></th>
+            <td>
+               <input type="radio" formControlName="gender" name="gender" value="Male" required>
+               <label>Male</label>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <input type="radio" formControlName="gender" name="gender" value="Female" required>
+               <label>Female</label>
+            </td>
+         </tr>
+         <tr>
+            <th>ADDRESS</th>
+            <td><textarea rows="3" cols="15" placeholder="Enter Address" class="form-control" name="address"
+                  formControlName="address" required></textarea></td>
+         </tr>
+         <tr>
+            <th>STANDARD</th>
+            <td><select class="custom select" class="form-control" name="standard" formControlName="standard" required>
+                  <option value="">Select Standard</option>
+                  <option *ngFor="let standard of standardList">{{standard}}</option>
+               </select>
+            </td>
+            </tr>
+            <tr>
+            <th>SECTION</th>
+            <td><select class="custom select" class="form-control" name="section" (change)=getRoomNo()
+                  formControlName="section" required>
+                  <option value="">Select Section</option>
+                  <option *ngFor="let section of sectionList">{{section}}</option>
+               </select>
+            </td>
+         </tr>
+
+      </table>
+      <button id="margin" type="submit" (click)=saveStudent() class="btn btn-success">ADD</button>
+      <button id="align" type="submit" (click)=back() class="btn btn-primary">BACK</button><button id="align"
+          [disabled] = "studentId==0" type="submit" (click)=saveParentDetails()  class="btn btn-primary">ADD PARENT DETAILS</button>
+
+      <br>
+      <br>
+   </form>
+</div>

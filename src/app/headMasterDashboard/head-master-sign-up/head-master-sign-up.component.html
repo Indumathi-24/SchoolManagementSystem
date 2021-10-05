@@ -1,0 +1,123 @@
+<div class="card m-3">
+    <div class="card-text center">
+        <div class="card bg-light mb-0" style="max-width: 42rem;">
+            <h5 class="card-header"><b> REGISTRATION </b></h5>
+            <div class="card-body">
+                <form [formGroup]="HeadMasterSignUpForm" #saveHeadMaster (ngSubmit)=saveHeadMasterSignUp()>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label"><b>IDENTITY</b></label>
+                        <div class="form-group col-7">
+
+                            <input type="number" placeholder="Enter Id" formControlName="id" class="form-control"
+                                required>
+                            <div *ngIf="id?.invalid && (id?.dirty || id?.touched)" class="alert alert-danger">
+
+                                <div *ngIf="id?.errors?.required">
+                                    Id is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"><b>NAME</b></label>
+                        <div class="form-group col-7">
+
+                            <input type="text" placeholder="Enter name" formControlName="name" class="form-control"
+                                required>
+                            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+
+                                <div *ngIf="name?.errors?.required">
+                                    Name is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"><b>DATEOFBIRTH</b></label>
+                        <div class="form-group col-7">
+
+                            <input type="date" placeholder="Enter DOB" formControlName="dateOfBirth"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <legend class="col-form-label col-sm-3 pt-0"><b>GENDER</b></legend>
+                        <div class="form-group col-7">
+                            <div class="form-check">
+                                <input type="radio" value="Male" formControlName="gender">
+                                <label class="form-check-label">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" value=Female formControlName="gender">
+                                <label class="form-check-label">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"><b>QUALIFICATION</b></label>
+                        <div class="form-group col-7">
+
+                            <select formControlName="qualification" class="form-control">
+                                <option value=""></option>
+                                <option value="B.Sc">B.Sc</option>
+                                <option value="M.Sc">M.Sc</option>
+                                <option value="Phed">Phed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"><b>EMAIL</b></label>
+                        <div class="form-group col-7">
+
+                            <input type="email" placeholder="Enter Email" formControlName="email" class="form-control"
+                                required>
+                            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger">
+
+                                <div *ngIf="email?.errors?.required">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="email?.errors?.email">
+                                    Invalid email id
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"><b>CONTACT NO</b></label>
+                        <div class="form-group col-7">
+
+                            <input type="number" placeholder="Enter Mobile No" formControlName="contactNo"
+                                class="form-control" required>
+                            <div *ngIf="contactNo?.invalid && (contactNo?.dirty || contactNo?.touched)"
+                                class="alert alert-danger">
+
+                                <div *ngIf="contactNo?.errors?.required">
+                                    ContactNo is required.
+                                </div>
+                                <div *ngIf="contactNo?.errors?.pattern">
+                                    Please,Enter 10 digit Mobile Number
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"><b>ADDRESS</b></label>
+                        <div class="form-group col-7">
+
+                            <textarea rows="5" cols="25" placeholder="Enter Address" formControlName="address"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mr-1" type="submit">REGISTER</button>
+                        <button class="btn btn-secondary" type="reset">CANCEL</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <h4><b><i>VIEWING MARK DETAILS</i></b></h4>
+    <form [formGroup]="ViewStudentsMarkForm" (ngSubmit)= getStudentsMark() >
+        <table class="table table-striped">
+
+            <tr>
+                <th>CLASSES</th>
+                <td><select class="custom select" class="form-control" name="classes" (change)=getSubjects()
+                        formControlName="classes">
+                        <option value="">Select Classes</option>
+                        <option *ngFor="let class of classList">{{class.standard}}-{{class.section}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>SUBJECTS</th>
+                <td><select class="custom select" class="form-control" name="subjectCode"   formControlName="code">
+                        <option value="">Select Subjects</option>
+                        <option *ngFor="let subjectCode of subjectList">{{subjectCode}}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button style="margin-left:15.25cm" type="submit" class="btn btn-success" value="SHOW STUDENTS MARKS">SHOW
+            STUDENTS MARKS</button>
+        <br>
+        <br>
+        <table *ngIf="subjectList.length>0" style="margin-left:7cm;width:60%;" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ROLL NO</th>
+                    <th>NAME</th>
+                    <th>TERM 1</th>
+                    <th>TERM 2</th>
+                    <th>TERM 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of studentList;let i=index">
+                    <td>{{student.rollNo}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{term1List[i]}}</td>
+                    <td>{{term2List[i]}}</td>
+                    <td>{{term3List[i]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>

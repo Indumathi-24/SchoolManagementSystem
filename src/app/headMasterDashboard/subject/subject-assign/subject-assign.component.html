@@ -23,7 +23,7 @@
         <td><select class="custom select" class="form-control" name="code" (change)=getRoomNo() (focus)=getSubject()
             formControlName="code">
             <option value="">Select Code</option>
-            <option *ngFor="let subjectDetail of subjectList">{{subjectDetail.code}}</option>
+            <option *ngFor="let subjectDetail of subjectList">{{subjectDetail.code}}-{{subjectDetail.name}}</option>
           </select>
         </td>
       </tr>

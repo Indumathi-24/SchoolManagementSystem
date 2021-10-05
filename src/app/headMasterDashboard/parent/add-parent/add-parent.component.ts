@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Parent } from 'src/app/model/parent';
 import { ParentService } from 'src/app/service/parent.service';
 import { Response} from 'src/app/model/response';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-parent',
@@ -19,7 +20,7 @@ export class AddParentComponent implements OnInit {
   })
 
   
-  constructor(private route:ActivatedRoute,private parentService:ParentService) { }
+  constructor(private dialogRef:MatDialogRef<AddParentComponent>,private route:ActivatedRoute,private parentService:ParentService) { }
   
   ngOnInit(): void {
   }
@@ -35,5 +36,9 @@ export class AddParentComponent implements OnInit {
         let response:Response =data;
         window.alert(response.statusText);
       },error=>{window.alert(error.error.statusText)})
+  }
+
+  cancel() {
+    this.dialogRef.close();
   }
 }

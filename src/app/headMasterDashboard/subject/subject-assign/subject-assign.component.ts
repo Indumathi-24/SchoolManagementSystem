@@ -53,7 +53,10 @@ export class SubjectAssignComponent implements OnInit {
     let classDetail:ClassRoom = new ClassRoom();
     classDetail.roomNo =this.roomNo;
     let subjectDetail:Subject = new Subject();
-    subjectDetail.code = this.AddSubjectClassForm.get('code')?.value;
+    let subjectCode:string = this.AddSubjectClassForm.get('code')?.value;
+    let subjectCodeList:string[];
+    subjectCodeList = subjectCode.split('-');
+    subjectDetail.code = subjectCodeList[0];
     const subjectClass:SubjectClass = new SubjectClass();
     subjectClass.classDetail = classDetail;
     subjectClass.subject = subjectDetail;

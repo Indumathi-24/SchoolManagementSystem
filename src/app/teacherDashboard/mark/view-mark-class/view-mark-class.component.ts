@@ -82,7 +82,6 @@ export class ViewMarkClassComponent implements OnInit {
           if (subjectCode != null) {
             this.subjectList.push(subjectCode);
           }
-          //this.getStudentsMark();
         }, error => {
           window.alert(error.error.statusText);
         })
@@ -122,7 +121,8 @@ export class ViewMarkClassComponent implements OnInit {
               }
             case 'English':
               {
-                this.marks.push(Number(this.markList[i].english));
+                this.marks.push(Number(this.markList[index].english));
+                index++;
                 break;
               }
             case 'Maths':
@@ -135,12 +135,14 @@ export class ViewMarkClassComponent implements OnInit {
               }
             case 'Science':
               {
-                this.marks.push(Number(this.markList[i].science));
+                this.marks.push(Number(this.markList[index].science));
+                index++;
                 break;
               }
             case 'SocialScience':
               {
-                this.marks.push(Number(this.markList[i].socialScience));
+                this.marks.push(Number(this.markList[index].socialScience));
+                index++;
                 break;
               }
             }
@@ -175,9 +177,5 @@ export class ViewMarkClassComponent implements OnInit {
         this.term2List.push(this.marks[i+1]);
         this.term3List.push(this.marks[i+2]);
     }
-            console.log(this.term1List);
-             console.log(this.term2List);
-            console.log(this.term3List);
-          //console.log(this.marks);
   }
 }

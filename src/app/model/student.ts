@@ -4,5 +4,6 @@ export class Student {
     public dateOfBirth?:string;
     public gender?:string;
     public address?:string;
+    public password?:string;
     public roomNo?:number;
 }

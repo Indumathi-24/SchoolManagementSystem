@@ -27,12 +27,23 @@
   {
     background:darkslategray;
     color:white;
-    height:40px;
-    text-align:end;
+    height:50px;
+    text-align:center;
   }
 
   button
   {
-    margin-left: 12cm;
-    margin-right: 1cm;
+    margin-left: 25cm;
+    margin-top:6px;
+    margin-bottom:4px;
+  }
+
+  .sidenav a.active {
+    background-color: #8304aa;
+    color: white;
+  }
+  
+  .sidenav a:hover:not(.active) {
+    background-color: #555;
+    color: white;
   }

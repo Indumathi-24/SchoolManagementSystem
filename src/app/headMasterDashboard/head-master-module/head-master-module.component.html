@@ -2,15 +2,16 @@
 <h4>HEADMASTER PORTAL<button type =submit (click)="back()" class="btn btn-secondary">LOGOUT</button></h4>
 
 <div class="sidenav">
-    <a routerLink ="addclass">Add ClassRoom</a>
-    <a routerLink ="viewclass">View Classes</a>
-    <a routerLink ="addstudent">Add Students</a>
-    <a routerLink ="viewstudent">View Students</a>
-    <a routerLink ="viewresult">View Result</a>
-    <a routerLink ="viewprofile">View Profile</a>
-    <a routerLink ="addsubject">Add Subject</a>
-    <a routerLink ="assignsubject">Assign Subject</a>
-    <a routerLink ="viewassignsubject">View Assigned Subject</a>
-    <a routerLink ="assignteachersubject">Assign Teacher Subject</a>
+    <a routerLink ="addclass" routerLinkActive="active">Add Classes</a>
+    <a routerLink ="viewclass" routerLinkActive = "active">View Classes</a>
+    <a routerLink ="addstudent" routerLinkActive = "active">Add Students</a>
+    <a routerLink ="viewstudent" routerLinkActive = "active">View Students</a>
+    <a routerLink ="viewresult" routerLinkActive = "active">View Results</a>
+    <a routerLink ="addsubject" routerLinkActive = "active">Add Subjects</a>
+    <a routerLink ="assignsubject" routerLinkActive = "active">Assign Subjects To Classes</a>
+    <a routerLink ="viewassignsubject" routerLinkActive = "active">View Assigned Subjects</a>
+    <a routerLink ="assignteachersubject" routerLinkActive = "active">Assign Teachers To Subject</a>
+    <a routerLink ="viewprofile" routerLinkActive = "active">View Profile</a>
+    <a routerLink ="changepassword" routerLinkActive = "active">Reset Password</a>
 </div>
 <router-outlet></router-outlet>

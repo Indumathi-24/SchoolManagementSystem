@@ -21,6 +21,7 @@ export class HeadMasterSignUpComponent implements OnInit {
     address:new FormControl('')
   });
   
+  headMasterId:number=0;
   constructor(private headMasterSignUpService:HeadMasterSignUpService,private router:Router) { }
   saveHeadMasterSignUp()
   {
@@ -35,12 +36,17 @@ export class HeadMasterSignUpComponent implements OnInit {
     headMaster.address=this.HeadMasterSignUpForm.get('address')?.value;
     this.headMasterSignUpService.saveDetails(headMaster).subscribe(data=>{
         let response:Response = data;
+        this.headMasterId = response.data;
         window.alert(response.statusText);
     },error=>{
       window.alert(error.error.statusText);
     });
-    this.router.navigate(['headmastercredentials']);
+    if(this.headMasterId!=0)
+    {
+      this.router.navigate(['headmastercredentials']);
+    }
   }
+  
  
   get name() { return this.HeadMasterSignUpForm.get('name'); }
 

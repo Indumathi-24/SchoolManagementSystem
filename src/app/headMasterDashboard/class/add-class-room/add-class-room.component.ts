@@ -15,7 +15,8 @@ export class AddClassRoomComponent implements OnInit {
  ClassRoomForm=new FormGroup({
     roomNo:new FormControl(''),
     standard:new FormControl(''),
-    section:new FormControl(''),})
+    section:new FormControl(''),
+    passPercentage:new FormControl('')})
 
   standardList:string[]=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
   sectionList:string[]=['A','B','C','D','E'];
@@ -30,6 +31,7 @@ export class AddClassRoomComponent implements OnInit {
    classDetail.roomNo=this.ClassRoomForm.get('roomNo')?.value;
    classDetail.standard=this.ClassRoomForm.get('standard')?.value;
    classDetail.section=this.ClassRoomForm.get('section')?.value;
+   classDetail.passPercentage = this.ClassRoomForm.get('passPercentage')?.value;
    this.classRoomService.saveClassRoomDetails(classDetail).subscribe( data=>{
     let response:Response = data;
     window.alert(response.statusText);

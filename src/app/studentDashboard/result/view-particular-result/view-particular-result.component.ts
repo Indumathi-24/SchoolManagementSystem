@@ -14,9 +14,10 @@ export class ViewParticularResultComponent implements OnInit {
   markList: Mark[] = [];
   marks: number[] = [];
   constructor(private markService: MarkService) { }
-
+  
+  studentId:number = Number(localStorage.getItem('user'));
   ngOnInit(): void {
-    this.markService.getParticularSubjectMark(2017501001).subscribe(data => {
+    this.markService.getParticularSubjectMark(this.studentId).subscribe(data => {
       let response: Response = data;
       this.markList = response.data;
       for (let i = 0; i < this.markList.length; i++) {

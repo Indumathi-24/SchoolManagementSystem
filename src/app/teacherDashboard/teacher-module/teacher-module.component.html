@@ -1,10 +1,11 @@
 <h4>TEACHER PORTAL<button type =submit (click)="back()" class="btn btn-secondary">LOGOUT</button></h4>
 
 <div class="sidenav">
-    <a routerLink ="addmark">Add Mark</a>
-    <a routerLink ="viewmark">View Mark</a>
-    <a routerLink ="viewstudentsmarks">View Mark By Class</a>
-    <a routerLink ="getstudents">View Students</a>
-    <a routerLink ="viewprofile">View Profile</a>
+    <a routerLink ="addmark" routerLinkActive = "active">Add Mark</a>
+    <a routerLink ="viewmark" routerLinkActive = "active">View Mark</a>
+    <a routerLink ="viewstudentsmarks" routerLinkActive = "active">View Mark By Class</a>
+    <a routerLink ="getstudents" routerLinkActive = "active">View Students</a>
+    <a routerLink ="viewprofile" routerLinkActive = "active">View Profile</a>
+    <a routerLink ="teacherchangepassword" routerLinkActive = "active">Reset Password</a>
 </div>
 <router-outlet></router-outlet>

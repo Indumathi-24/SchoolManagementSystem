@@ -34,7 +34,7 @@ export class TeacherLoginComponent implements OnInit {
           if (teacherLoginId == this.TeacherLogin.get('userId')?.value && teacherLoginDetail.password == this.TeacherLogin.get('password')?.value) {
             window.alert("Logged in Successfully");
             localStorage.setItem("user", String(teacherLoginId))
-            this.router.navigate(['teachermodule']);
+            this.router.navigate(['teachermodule/addmark']);
           }
 
           if (teacherLoginId != this.TeacherLogin.get('userId')?.value && teacherLoginDetail.password != this.TeacherLogin.get('password')?.value) {

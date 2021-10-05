@@ -51,6 +51,7 @@ const routes: Routes = [
     { path: "addsubject",component:AddSubjectComponent},
     { path: "assignsubject",component:SubjectAssignComponent},
     { path: "viewassignsubject",component:ViewSubjectAssignComponent},
+    { path: "changepassword", component: ForgotPasswordComponent },
     { path: "assignteachersubject",component:TeacherSubjectAssignComponent}
     ]
   },
@@ -59,16 +60,16 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "headmasterlogin", component: HeadMasterLoginComponent },
   { path: "headmastercredentials", component: HeadMasterLoginCredentialsComponent },
-  { path: "forgotpassword", component: ForgotPasswordComponent },
+  
   { path: "teacherlogincredentials",component:TeacherLoginCredentialsComponent},
   { path: "teacherlogin",component:TeacherLoginComponent},
-  { path: "teacherforgotpassword",component:TeacherForgotPasswordComponent},
   { path: "studentlogincredentials",component:StudentLoginCredentialsComponent},
   { path: "loginforstudent",component:StudentLoginComponent},
   { path: "studentforgotpassword",component:StudentForgotPasswordComponent},
   { path:"teachermodule",component:TeacherModuleComponent,children:[{
     path:"addmark",component:AddMarkComponent
   },
+  { path: "teacherchangepassword",component:TeacherForgotPasswordComponent},
   { path: "viewmark",component:ViewMarkComponent},
   {path:"viewstudentsmarks",component:ViewMarkClassComponent},
   { path: "getstudents",component:GetStudentComponent},

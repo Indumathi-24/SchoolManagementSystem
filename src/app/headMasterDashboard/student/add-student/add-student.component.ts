@@ -38,6 +38,8 @@ export class AddStudentComponent implements OnInit {
   constructor(private dialog: MatDialog,private markService:MarkService,private resultService:ResultService,private classRoomService:ClassService,private studentService:StudentService,private router:Router) { }
 
   ngOnInit(): void {
+    const binary = Math.random().toString(16).substr(2, 8); 
+    console.log(binary);
   }
 
   getRoomNo()
@@ -57,6 +59,7 @@ export class AddStudentComponent implements OnInit {
       this.studentDetail.dateOfBirth =this.StudentForm.get('dateOfBirth')?.value;
       this.studentDetail.gender = this.StudentForm.get('gender')?.value;
       this.studentDetail.address = this.StudentForm.get('address')?.value;
+      this.studentDetail.password = Math.random().toString(16).substr(2, 8);
       console.log(this.studentDetail);
       this.studentService.saveStudent(this.studentDetail,this.roomNo).subscribe(data=>{
         let response:Response = data;

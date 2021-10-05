@@ -63,7 +63,7 @@
          </tr>
 
       </table>
-      <button id="margin" type="submit" (click)=saveStudent() class="btn btn-success">ADD</button>
+      <button [disabled] = "studentId!=0 || !StudentForm.valid" id="margin" type="submit" (click)=saveStudent() class="btn btn-success">ADD</button>
       <button id="align" type="submit" (click)=back() class="btn btn-primary">BACK</button><button id="align"
           [disabled] = "studentId==0" type="submit" (click)=saveParentDetails()  class="btn btn-primary">ADD PARENT DETAILS</button>
 

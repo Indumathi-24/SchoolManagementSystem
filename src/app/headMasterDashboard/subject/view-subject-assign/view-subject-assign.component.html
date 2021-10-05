@@ -25,14 +25,14 @@
     <table *ngIf ="length>0" class="table table-striped">
         <thead>
             <tr>
-                <th>SUBJECT NAME</th>
                 <th>SUBJECT CODE</th>
+                <th>SUBJECT NAME</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let subject of subjectList">
-                <td>{{subject.name}}</td>
                 <td>{{subject.code}}</td>
+                <td>{{subject.name}}</td>
             </tr>
         </tbody>
         </table>

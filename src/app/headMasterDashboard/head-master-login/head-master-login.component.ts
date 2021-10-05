@@ -33,7 +33,7 @@ export class HeadMasterLoginComponent implements OnInit {
           if (headMasterLoginId == this.HeadMasterLogin.get('userId')?.value && headMasterLoginData.password == this.HeadMasterLogin.get('password')?.value) {
             window.alert("Logged in Successfully");
             localStorage.setItem("user", String(headMasterLoginId))
-            this.router.navigate(['headmastermodule']);
+            this.router.navigate(['headmastermodule/addclass']);
           }
 
           if (headMasterLoginId != this.HeadMasterLogin.get('userId')?.value && headMasterLoginData.password != this.HeadMasterLogin.get('password')?.value) {

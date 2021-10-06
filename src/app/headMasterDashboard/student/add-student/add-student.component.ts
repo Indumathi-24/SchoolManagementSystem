@@ -21,12 +21,12 @@ import { AddParentComponent } from '../../parent/add-parent/add-parent.component
 export class AddStudentComponent implements OnInit {
    StudentForm=new FormGroup({
      rollNo:new FormControl('',[Validators.required]),
-     name:new FormControl(''),
-     dateOfBirth:new FormControl(''),
+     name:new FormControl('',[Validators.required]),
+     dateOfBirth:new FormControl('',[Validators.required]),
      gender:new FormControl(''),
      address:new FormControl(''),
-     standard:new FormControl(''),
-     section:new FormControl('')
+     standard:new FormControl('',[Validators.required]),
+     section:new FormControl('',[Validators.required])
    })
    studentDetail: Student = new Student();
    classList: ClassRoom[] =[];
@@ -140,4 +140,16 @@ localStorage.setItem('rollNo',this.StudentForm.get('rollNo')?.value);
 
   get rollNo()
   { return this.StudentForm.get('rollNo');}
+
+  get name()
+  { return this.StudentForm.get('name');}
+
+  get dateOfBirth()
+  { return this.StudentForm.get('dateOfBirth');}
+
+  get standard()
+  { return this.StudentForm.get('standard');}
+
+  get section()
+  { return this.StudentForm.get('section');}
 }

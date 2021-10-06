@@ -4,6 +4,8 @@ import { StudentLogin } from 'src/app/model/student-login';
 import { StudentLoginService } from 'src/app/service/student-login.service';
 import { Response } from 'src/app/model/response';
 import { Router } from '@angular/router';
+import { StudentService } from 'src/app/service/student.service';
+import { Student } from 'src/app/model/student';
 
 @Component({
   selector: 'app-student-login',
@@ -19,38 +21,33 @@ export class StudentLoginComponent implements OnInit {
 
 
 
-  constructor(private studentLoginService: StudentLoginService, private router: Router) { }
+  constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    this.studentLoginService.getLoginDetails(this.StudentLogin.get('userId')?.value)
+    this.studentService.getParticularStudent(this.StudentLogin.get('userId')?.value)
       .subscribe(data => {
         let response: Response = data;
-        let studentLoginDetail: StudentLogin = new StudentLogin();
-        studentLoginDetail = response.data;
-        this.studentLoginService.getParticularId(Number(studentLoginDetail.autoId)).subscribe(data => {
-          let response: Response = data;
-          let studentLoginId: number = response.data;
-          if (studentLoginId == this.StudentLogin.get('userId')?.value && studentLoginDetail.password == this.StudentLogin.get('password')?.value) {
+        let studentDetail: Student = new Student();
+        studentDetail = response.data;
+          if (studentDetail.rollNo == this.StudentLogin.get('userId')?.value && studentDetail.password == this.StudentLogin.get('password')?.value) {
             window.alert("Logged in Successfully");
-            localStorage.setItem("user", String(studentLoginId))
+            localStorage.setItem("user", String(studentDetail.rollNo))
             this.router.navigate(['studentmodule']);
           }
 
-          if (studentLoginId != this.StudentLogin.get('userId')?.value && studentLoginDetail.password != this.StudentLogin.get('password')?.value) {
+          if (studentDetail.rollNo != this.StudentLogin.get('userId')?.value && studentDetail.password != this.StudentLogin.get('password')?.value) {
             window.alert("Enter valid user or password");
           }
 
-          if (studentLoginDetail.password != this.StudentLogin.get('password')?.value) {
+          if (studentDetail.password != this.StudentLogin.get('password')?.value) {
             window.alert("Enter valid password");
           }
         })
-      }, error => {
-        window.alert(error.error.statusText);
-      })
-  }
+      }
+
 
   get userId() {
     return this.StudentLogin.get('userId');

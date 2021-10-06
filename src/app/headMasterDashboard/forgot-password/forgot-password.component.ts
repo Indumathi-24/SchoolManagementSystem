@@ -12,33 +12,42 @@ import { Response } from 'src/app/model/response';
 })
 export class ForgotPasswordComponent implements OnInit {
    
-  HeadMasterForGotPasswordForm =new FormGroup({
-     userId:new FormControl('',[Validators.required]),
-     password:new FormControl('',[Validators.required,Validators.minLength(8)]),
-     confirmPassword:new FormControl('',[Validators.required,Validators.minLength(8)])
-  });
   
+  loginId = Number(localStorage.getItem('user'));
+  password:string='';
+  confirmPassword:string='';
+  headMasterLoginData: HeadMasterLogin = new HeadMasterLogin();
+  headMasterLogin: HeadMasterLogin = new HeadMasterLogin();
   constructor(private headMasterLoginService:HeadMasterLoginServiceService,private router:Router) { }
 
   ngOnInit(): void {
+    this.headMasterLoginService.getLoginDetails(this.loginId)
+      .subscribe(data => {
+        let response: Response = data;
+        this.headMasterLoginData = response.data;
+        })
 
   }
-  saveHeadMasterForgotPassword()
+  updateHeadMasterPassword()
   {
-    const headMasterLogin: HeadMasterLogin = new HeadMasterLogin();
-    headMasterLogin.password = this.HeadMasterForGotPasswordForm.get('password')?.value;
-    if(headMasterLogin.password == this.HeadMasterForGotPasswordForm.get('confirmPassword')?.value)
+    this.headMasterLoginData.password = this.password;
+    if(this.headMasterLoginData.password == this.confirmPassword)
     {
      
-      this.headMasterLoginService.updateLoginDetails(this.HeadMasterForGotPasswordForm.get('userId')?.value,headMasterLogin)
+      this.headMasterLoginService.updateLoginDetails(this.loginId,this.headMasterLoginData)
       .subscribe(data=>
         {
             let response:Response = data;
+            this.headMasterLogin = response.data;
             window.alert(response.statusText);
           },error=>{
               window.alert(error.error.statusText);
-            });
-            this.router.navigate(['headMasterLogin']);  
+          });
+
+        if(this.headMasterLogin!=null)
+        {
+            this.router.navigate(['headmastermodule']);
+        }  
     }
     else
     {
@@ -46,16 +55,4 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
   }
-    get userId()
-    {
-      return this.HeadMasterForGotPasswordForm.get('userId');
-    }
-    get password()
-    {
-      return this.HeadMasterForGotPasswordForm.get('password');
-    }
-    get confirmPassword()
-    {
-      return this.HeadMasterForGotPasswordForm.get('confirmPassword');
-    }
 }

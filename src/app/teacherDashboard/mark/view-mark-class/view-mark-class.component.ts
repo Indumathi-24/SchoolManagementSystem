@@ -38,8 +38,9 @@ export class ViewMarkClassComponent implements OnInit {
   term1List:number[]=[];
   term2List:number[]=[];
   term3List:number[]=[];
+  roomNoList:number[]=[];
   
-  constructor(private subjectService:SubjectService,private markService:MarkService,private studentService:StudentService,private classRoomService:ClassService,private teacherAssignService:TeacherAssignService,private subjectAssignService:SubjectAssignService) { }
+  constructor(private subjectService:SubjectService,private markService:MarkService,private studentService:StudentService,private classService:ClassService,private teacherAssignService:TeacherAssignService,private subjectAssignService:SubjectAssignService) { }
 
   teacherId: number = Number(localStorage.getItem('user'));
 
@@ -48,51 +49,46 @@ export class ViewMarkClassComponent implements OnInit {
     this.teacherAssignService.getSubjectClassAssignId(this.teacherId).subscribe(data => {
       let response: Response = data;
       this.subjectAssignIdList = response.data;
-      for (let i = 0; i < this.subjectAssignIdList.length; i++) {
-        this.subjectAssignService.getRoomNoForId(this.subjectAssignIdList[i]).subscribe(data => {
-          let response: Response = data;
-          let roomNo: number = response.data;
-          this.classRoomService.getClass(roomNo).subscribe(data => {
-            let response: Response = data;
-            this.classList.push(response.data);
-          }, error => {
-            window.alert(error.error.statusText);
-          })
-        }, error => {
-          window.alert(error.error.statusText);
-        })
-      }
+      console.log(this.subjectAssignIdList);
+    this.subjectAssignService.getRoomNoList(this.subjectAssignIdList).subscribe(data=>{
+      let response: Response = data;
+      this.roomNoList = response.data;
+      console.log(this.roomNoList);
+    
+    this.classService.getClassList(this.roomNoList).subscribe(data=>{
+      let response: Response = data;
+      this.classList = response.data;
+      console.log(this.classList);
     }, error => {
       window.alert(error.error.statusText);
     })
-    this.classList=[];
+    }, error => {
+      window.alert(error.error.statusText);
+    })
+  }, error => {
+    window.alert(error.error.statusText);
+  })
   }
 
   getSubjects()
   {
     let classes: string = this.ViewStudentsMarkForm.get('classes')?.value;
     let classesList: string[] = classes.split('-');
-    this.classRoomService.getRoomNo(classesList[0], classesList[1]).subscribe(data => {
+    this.classService.getRoomNo(classesList[0], classesList[1]).subscribe(data => {
       let response: Response = data;
       this.roomNo = response.data;
-      for (let i = 0; i < this.subjectAssignIdList.length; i++) {
-        this.subjectAssignService.getSubjectCode(this.roomNo, this.subjectAssignIdList[i]).subscribe(data => {
-          let response: Response = data;
-          let subjectCode: string = response.data;
-          if (subjectCode != null) {
-            this.subjectList.push(subjectCode);
-          }
-        }, error => {
-          window.alert(error.error.statusText);
-        })
-        this.subjectList = [];
-      }
-      
+    this.subjectAssignService.getSubjectCodeList(this.roomNo,this.subjectAssignIdList).subscribe(data=>{
+      let response: Response = data;
+      this.subjectList = response.data;
+      }, error => {
+        window.alert(error.error.statusText);
+      })
     }, error => {
       window.alert(error.error.statusText);
     })
-
   }
+
+  
   getStudentsMark() {
      
     console.log(this.ViewStudentsMarkForm.get('code')?.value);
@@ -103,19 +99,22 @@ export class ViewMarkClassComponent implements OnInit {
       this.length = this.markList.length;
       console.log(this.markList)
       this.studentList=[];
-      for(let i=0;i<this.markList.length;i=i+3)
+      for(let i=0;i<(this.markList.length)/3;i++)
       {
         this.studentList.push(Object(this.markList[i].studentEntity));
+        console.log(this.studentList);
       }
       let index=0;
+      this.subjectService.getSubjectName(this.ViewStudentsMarkForm.get('code')?.value).subscribe(data => {
+        let response: Response = data;
+        let subject: Subject = response.data;
       for (let i = 0; i < this.markList.length; i++) {
-        this.subjectService.getSubjectName(this.ViewStudentsMarkForm.get('code')?.value).subscribe(data => {
-          let response: Response = data;
-          let subject: Subject = response.data;
-          switch (subject.name) {
+        switch (subject.name) {
             case 'Tamil':
               {
-                this.marks.push(Number(this.markList[index].tamil));
+                console.log(i);
+                console.log(index);
+                this.marks.push(Number(this.markList[i].tamil));
                 index++;
                 break;
               }
@@ -146,15 +145,11 @@ export class ViewMarkClassComponent implements OnInit {
                 break;
               }
             }
-
            this.getMarks(this.markList.length);
-            
+      }  
         }, error => {
           window.alert(error.error.statusText);
-        }
-        )
-        
-      }
+        })
       
       this.marks = [];
       index=0;
@@ -170,12 +165,28 @@ export class ViewMarkClassComponent implements OnInit {
     this.term2List=[];
     this.term3List=[];
     console.log(length);
+    console.log(this.marks);
     console.log(this.marks.length);
-    for(let i=0;i<length;i=i+3)
+    let  noOfStudents:number =(length)/3;
+    let count:number=0;
+    for(let i=0;i<length;i++)
     {
-        this.term1List.push(this.marks[i]);
-        this.term2List.push(this.marks[i+1]);
-        this.term3List.push(this.marks[i+2]);
+      if(i<noOfStudents)
+      {
+      this.term1List.push(this.marks[i]);
+      count++;
+      }
+      else if(i<(2*(noOfStudents)))
+      {
+        this.term2List.push(this.marks[i]);
+      }
+      else
+      {
+        this.term3List.push(this.marks[i]);
+      }
     }
+    console.log(this.term1List);
+    console.log(this.term2List)
+    console.log(this.term3List)
   }
 }

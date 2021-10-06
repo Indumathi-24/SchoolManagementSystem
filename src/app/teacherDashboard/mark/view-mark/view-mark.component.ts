@@ -37,8 +37,9 @@ export class ViewMarkComponent implements OnInit {
   classList: ClassRoom[] = [];
   rollNo: number = 0;
   studentDetail: Student = new Student();
+  roomNoList:number[]=[];
 
-  constructor(private subjectService: SubjectService, private marService: MarkService, private classRoomService: ClassService, private studentService: StudentService, private subjectAssignService: SubjectAssignService, private teacherAssignService: TeacherAssignService) { }
+  constructor(private subjectService: SubjectService, private markService: MarkService, private classService: ClassService, private studentService: StudentService, private subjectAssignService: SubjectAssignService, private teacherAssignService: TeacherAssignService) { }
 
   teacherId: number = Number(localStorage.getItem('user'));
 
@@ -46,48 +47,44 @@ export class ViewMarkComponent implements OnInit {
     this.teacherAssignService.getSubjectClassAssignId(this.teacherId).subscribe(data => {
       let response: Response = data;
       this.subjectAssignIdList = response.data;
-      for (let i = 0; i < this.subjectAssignIdList.length; i++) {
-        this.subjectAssignService.getRoomNoForId(this.subjectAssignIdList[i]).subscribe(data => {
-          let response: Response = data;
-          let roomNo: number = response.data;
-          this.classRoomService.getClass(roomNo).subscribe(data => {
-            let response: Response = data;
-            this.classList.push(response.data);
-          }, error => {
-            window.alert(error.error.statusText);
-          })
-        }, error => {
-          window.alert(error.error.statusText);
-        })
-      }
+      console.log(this.subjectAssignIdList);
+    this.subjectAssignService.getRoomNoList(this.subjectAssignIdList).subscribe(data=>{
+      let response: Response = data;
+      this.roomNoList = response.data;
+      console.log(this.roomNoList);
+    
+    this.classService.getClassList(this.roomNoList).subscribe(data=>{
+      let response: Response = data;
+      this.classList = response.data;
+      console.log(this.classList);
     }, error => {
       window.alert(error.error.statusText);
     })
+    }, error => {
+      window.alert(error.error.statusText);
+    })
+  }, error => {
+    window.alert(error.error.statusText);
+  })
   }
 
-  getSubjects() {
+  getSubjects()
+  {
     let classes: string = this.ViewMarkForm.get('classes')?.value;
     let classesList: string[] = classes.split('-');
-    this.classRoomService.getRoomNo(classesList[0], classesList[1]).subscribe(data => {
+    this.classService.getRoomNo(classesList[0], classesList[1]).subscribe(data => {
       let response: Response = data;
       this.roomNo = response.data;
-      for (let i = 0; i < this.subjectAssignIdList.length; i++) {
-        this.subjectAssignService.getSubjectCode(this.roomNo, this.subjectAssignIdList[i]).subscribe(data => {
-          let response: Response = data;
-          let subjectCode: string = response.data;
-          if (subjectCode != null) {
-            this.subjectList.push(subjectCode);
-          }
-        }, error => {
-          window.alert(error.error.statusText);
-        })
-        this.subjectList = [];
-      }
+    this.subjectAssignService.getSubjectCodeList(this.roomNo,this.subjectAssignIdList).subscribe(data=>{
+      let response: Response = data;
+      this.subjectList = response.data;
+      }, error => {
+        window.alert(error.error.statusText);
+      })
       this.getStudents();
     }, error => {
       window.alert(error.error.statusText);
     })
-
   }
   getStudents() {
     this.studentService.getAllStudent(this.roomNo).subscribe(data => {
@@ -106,15 +103,15 @@ export class ViewMarkComponent implements OnInit {
     }, error => {
       window.alert(error.error.statusText);
     })
-    this.marService.getParticularSubjectMark(this.ViewMarkForm.get('rollNo')?.value).subscribe(data => {
+    this.markService.getParticularSubjectMark(this.ViewMarkForm.get('rollNo')?.value).subscribe(data => {
       let response: Response = data;
       this.markList = response.data;
       console.log(this.markList);
       this.length = this.markList.length;
+      this.subjectService.getSubjectName(this.ViewMarkForm.get('code')?.value).subscribe(data => {
+        let response: Response = data;
+        let subject: Subject = response.data;
       for (let i = 0; i < this.markList.length; i++) {
-        this.subjectService.getSubjectName(this.ViewMarkForm.get('code')?.value).subscribe(data => {
-          let response: Response = data;
-          let subject: Subject = response.data;
           switch (subject.name) {
             case 'Tamil':
               {
@@ -142,11 +139,11 @@ export class ViewMarkComponent implements OnInit {
                 break;
               }
           }
+        }
           console.log(this.marks);
         }, error => {
           window.alert(error.error.statusText);
         })
-      }
       this.marks = [];
     }, error => {
       window.alert(error.error.statusText);

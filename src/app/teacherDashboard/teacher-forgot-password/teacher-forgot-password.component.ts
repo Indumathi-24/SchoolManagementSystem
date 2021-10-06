@@ -13,43 +13,49 @@ import { TeacherLoginService } from 'src/app/service/teacher-login.service';
 })
 export class TeacherForgotPasswordComponent implements OnInit {
 
-  TeacherForGotPasswordForm = new FormGroup({
-    userId: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
-  })
 
+
+  teacherLoginDetail: TeacherLogin = new TeacherLogin();
+  teacherId: number = Number(localStorage.getItem('user'));
+  password:string='';
+  confirmPassword:string='';
+  teacherLogin: TeacherLogin = new TeacherLogin();
 
   constructor(private teacherLoginService: TeacherLoginService, private router: Router) { }
 
+  
   ngOnInit(): void {
+    this.teacherLoginService.getLoginDetails(this.teacherId)
+      .subscribe(data => {
+        let response: Response = data;
+        this.teacherLoginDetail = response.data;
+      },error=>{
+        window.alert(error.error.statusText);
+      })
   }
+  
+ 
+  updateTeacherPassword() {
+    this.teacherLoginDetail.password = this.password
+    if (this.teacherLoginDetail.password == this.confirmPassword) {
 
-  saveTeacherForgotPassword() {
-    let teacherLogin: TeacherLogin = new TeacherLogin();
-    teacherLogin.password = this.TeacherForGotPasswordForm.get('password')?.value;
-    if (teacherLogin.password == this.TeacherForGotPasswordForm.get('confirmPassword')?.value) {
-
-      this.teacherLoginService.updateLoginDetails(this.TeacherForGotPasswordForm.get('userId')?.value, teacherLogin)
+      this.teacherLoginService.updateLoginDetails(this.teacherId, this.teacherLoginDetail)
         .subscribe(data => {
-          console.log(data)
           let response: Response = data;
+          this.teacherLogin = response.data;
           window.alert(response.statusText)
+        },error=>{
+          window.alert(error.error.statusText);
         });
-      this.router.navigate(['headMasterLogin']);
+      if(this.teacherLogin!=null)
+      {
+      this.router.navigate(['teachermodule']);
+      }
     }
     else {
       window.alert("Enter same password and confirmPassword")
     }
 
   }
-  get userId() {
-    return this.TeacherForGotPasswordForm.get('userId');
-  }
-  get password() {
-    return this.TeacherForGotPasswordForm.get('password');
-  }
-  get confirmPassword() {
-    return this.TeacherForGotPasswordForm.get('confirmPassword');
-  }
+
 }

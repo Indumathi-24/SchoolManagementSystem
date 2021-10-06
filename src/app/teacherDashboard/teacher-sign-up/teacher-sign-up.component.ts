@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Response } from 'src/app/model/response';
 import { Teacher } from 'src/app/model/teacher';
 import { TeacherSignUpService } from 'src/app/service/teacher-sign-up.service';
@@ -22,7 +23,9 @@ export class TeacherSignUpComponent implements OnInit {
     address: new FormControl('')
 
   })
-  constructor(private teacherSignUpService: TeacherSignUpService) { }
+
+  teacherId:number=0;
+  constructor(private teacherSignUpService: TeacherSignUpService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -38,8 +41,13 @@ export class TeacherSignUpComponent implements OnInit {
     teacherSignUp.address = this.TeacherSignUpForm.get('address')?.value;
     this.teacherSignUpService.saveDetails(teacherSignUp).subscribe(data => {
       let response: Response = data;
+      this.teacherId = response.data;
       window.alert(response.statusText);
     }, error => { window.alert(error.error.statusText) });
+    if(this.teacherId!=0)
+    {
+      this.router.navigate(['teacherlogincredentials']);
+    }
   }
 
   get name() { return this.TeacherSignUpForm.get('name'); }

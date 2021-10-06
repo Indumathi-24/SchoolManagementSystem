@@ -1,3 +1,5 @@
+import { ClassRoom } from "./class-room";
+
 export class Student {
     public rollNo?:number;
     public name?:string;
@@ -5,5 +7,5 @@ export class Student {
     public gender?:string;
     public address?:string;
     public password?:string;
-    public roomNo?:number;
+    public classEntity?:ClassRoom;
 }

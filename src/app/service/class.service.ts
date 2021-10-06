@@ -39,4 +39,9 @@ export class ClassService {
   {
       return this.http.get(`${this.baseUrl}`+'/'+`${standard}`+'/'+`${section}`)
   }
+
+  getClassList(roomNoList:number[]):Observable<Response>
+  {
+    return this.http.get(`${this.baseUrl}`+'/roomNoList/'+`${roomNoList}`);
+  }
 }

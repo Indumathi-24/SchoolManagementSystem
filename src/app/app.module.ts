@@ -92,7 +92,8 @@ import { ViewMarkClassComponent } from './teacherDashboard/mark/view-mark-class/
     StudentLoginCredentialsComponent,
     StudentLoginComponent,
     StudentForgotPasswordComponent,
-    ViewMarkClassComponent
+    ViewMarkClassComponent,
+    AddTeacherComponent
 
   ],
   imports: [

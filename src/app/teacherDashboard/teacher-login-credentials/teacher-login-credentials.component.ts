@@ -18,7 +18,7 @@ export class TeacherLoginCredentialsComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
 
-
+  loginId:number=0;
   constructor(private teacherLoginService: TeacherLoginService, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,11 +31,15 @@ export class TeacherLoginCredentialsComponent implements OnInit {
       this.teacherLoginService.saveLoginDetails(this.TeacherLoginCredentialsForm.get('userId')?.value, teacherLogin)
         .subscribe(data => {
           let response: Response = data;
+          this.loginId = response.data;
           window.alert(response.statusText)
         }, error => {
           window.alert(error.error.statusText);
         });
+      if(this.loginId!=null)
+      {
       this.router.navigate(['teacherlogin']);
+      }
     }
 
     else {

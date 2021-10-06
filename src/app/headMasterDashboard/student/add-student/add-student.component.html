@@ -18,6 +18,12 @@
             <th>NAME</th>
             <td><input type="text" class="form-control" placeholder="Enter Name" name="name" formControlName="name" required>
             </td>
+             <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+
+            <div *ngIf="name?.errors?.required">
+                Name is required.
+            </div>
+        </div>
          </tr>
 
          <tr>
@@ -51,6 +57,12 @@
                   <option *ngFor="let standard of standardList">{{standard}}</option>
                </select>
             </td>
+             <div *ngIf="standard?.invalid && (standard?.dirty || standard?.touched)" class="alert alert-danger">
+
+                  <div *ngIf="standard?.errors?.required">
+                     Standard is required.
+                  </div>
+              </div>
             </tr>
             <tr>
             <th>SECTION</th>
@@ -60,6 +72,12 @@
                   <option *ngFor="let section of sectionList">{{section}}</option>
                </select>
             </td>
+             <div *ngIf="section?.invalid && (section?.dirty || section?.touched)" class="alert alert-danger">
+
+                  <div *ngIf="section?.errors?.required">
+                     Section is required.
+                  </div>
+              </div>
          </tr>
 
       </table>
@@ -71,3 +89,156 @@
       <br>
    </form>
 </div>
+
+
+<!-- <div class="container-fluid">
+   <h4 style="text-align: center;"><b>ADDING STUDENT DETAILS</b></h4>
+   <form [formGroup]="StudentForm">
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label"><b>ROLL NO</b></label>
+         <div class="form-group col-4">
+
+            <input type="number" class="form-control" placeholder="Enter RollNo" name="rollNo"
+                     formControlName="rollNo" required>
+         <div *ngIf="rollNo?.invalid && (rollNo?.dirty || rollNo?.touched)" class="alert alert-danger">
+
+               <div *ngIf="rollNo?.errors?.required">
+                   RollNo is required.
+               </div>
+           </div>
+         </div>
+     </div>
+
+     <div class="form-group row">
+      <label class="col-sm-2 col-form-label"><b>NAME</b></label>
+      <div class="form-group col-4">
+         <input type="text" class="form-control" placeholder="Enter Name" name="name" formControlName="name" required>
+         <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+
+            <div *ngIf="name?.errors?.required">
+                Name is required.
+            </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="form-group row">
+   <label class="col-sm-2 col-form-label"><b>DATE OF BIRTH</b></label>
+   <div class="form-group col-4">
+      <input type="date" class="form-control" placeholder="Enter DateOfBirth" name="dateOfBirth"
+                        formControlName="dateOfBirth" required>
+      </div>
+   </div>
+
+
+   <div class="form-group row">
+      <legend class="col-form-label col-sm-2 pt-0"><b>GENDER</b></legend>
+      <div class="form-group col-4">
+          <div>
+              <input type="radio" value="Male" formControlName="gender"> Male
+          </div>
+          <div>
+              <input type="radio" value="Female" formControlName="gender"> Female
+          </div>
+      </div>
+  </div>
+
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label"><b>ADDRESS</b></label>
+         <div class="form-group col-4">
+            <textarea rows="3" cols="15" placeholder="Enter Address" class="form-control" name="address"
+            formControlName="address" required></textarea>
+            </div>
+         </div>
+
+         <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><b>STANDARD</b></label>
+            <div class="form-group col-4">
+               <select class="custom select" class="form-control" name="standard" formControlName="standard" required>
+                  <option value="">Select Standard</option>
+                  <option *ngFor="let standard of standardList">{{standard}}</option>
+               </select>
+               <div *ngIf="standard?.invalid && (standard?.dirty || standard?.touched)" class="alert alert-danger">
+
+                  <div *ngIf="standard?.errors?.required">
+                     Standard is required.
+                  </div>
+              </div>
+               </div>
+            </div>
+
+            <div class="form-group row">
+               <label class="col-sm-2 col-form-label"><b>SECTION</b></label>
+               <div class="form-group col-4">
+                  <select class="custom select" class="form-control" name="section" (change)=getRoomNo()
+                  formControlName="section" required>
+                  <option value="">Select Section</option>
+                  <option *ngFor="let section of sectionList">{{section}}</option>
+               </select>
+               <div *ngIf="section?.invalid && (section?.dirty || section?.touched)" class="alert alert-danger">
+
+                  <div *ngIf="section?.errors?.required">
+                     Section is required.
+                  </div>
+              </div>
+                  </div>
+               </div> -->
+
+           
+               <!-- <tr>
+                  <th>NAME</th>
+                  <td><input type="text" class="form-control" placeholder="Enter Name" name="name" formControlName="name" required>
+                  </td>
+               </tr>
+
+               <tr>
+                  <th>DATEOFBIRTH</th>
+                  <td><input type="date" class="form-control" placeholder="Enter DateOfBirth" name="dateOfBirth"
+                        formControlName="dateOfBirth" required></td>
+               </tr>
+
+               <tr>
+                  <th rowspan="2"><label>GENDER</label></th>
+                  <td>
+                     <input type="radio" formControlName="gender" name="gender" value="Male" required>
+                     <label>Male</label>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <input type="radio" formControlName="gender" name="gender" value="Female" required>
+                     <label>Female</label>
+                  </td>
+               </tr>
+               <tr>
+                  <th>ADDRESS</th>
+                  <td><textarea rows="3" cols="15" placeholder="Enter Address" class="form-control" name="address"
+                        formControlName="address" required></textarea></td>
+               </tr>
+               <tr>
+                  <th>STANDARD</th>
+                  <td><select class="custom select" class="form-control" name="standard" formControlName="standard" required>
+                        <option value="">Select Standard</option>
+                        <option *ngFor="let standard of standardList">{{standard}}</option>
+                     </select>
+                  </td>
+                  </tr>
+                  <tr>
+                  <th>SECTION</th>
+                  <td><select class="custom select" class="form-control" name="section" (change)=getRoomNo()
+                        formControlName="section" required>
+                        <option value="">Select Section</option>
+                        <option *ngFor="let section of sectionList">{{section}}</option>
+                     </select>
+                  </td>
+               </tr>
+
+            </table> -->
+      <!-- <button [disabled] = "studentId!=0 || !StudentForm.valid" id="margin" type="submit" (click)=saveStudent() class="btn btn-success">ADD</button>
+      <button id="align" type="submit" (click)=back() class="btn btn-primary">BACK</button><button id="align"
+          [disabled] = "studentId==0" type="submit" (click)=saveParentDetails()  class="btn btn-primary">ADD PARENT DETAILS</button>
+
+      <br>
+      <br>
+   </form>
+</div> -->

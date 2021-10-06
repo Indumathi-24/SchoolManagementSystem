@@ -25,4 +25,9 @@ export class SubjectService {
   {
     return this.http.get(`${this.baseUrl}`+'/'+`${code}`);
   }
+
+  getSubjectList(subjectCodeList:String[]):Observable<Response>
+  {
+    return this.http.get(`${this.baseUrl}`+'/subjectList/'+`${subjectCodeList}`);
+  }
 }

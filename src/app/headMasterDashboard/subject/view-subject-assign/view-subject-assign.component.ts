@@ -47,17 +47,23 @@ export class ViewSubjectAssignComponent implements OnInit {
         let response:Response = data;
         this.subjectCodeList = response.data;
         this.length = this.subjectCodeList.length;
+      this.subjectService.getSubjectList(this.subjectCodeList).subscribe(data=>{
+        let response:Response = data;
+        this.subjectList = response.data;
+      },error=>{
+        window.alert(error.error.statusText);
+      })
 
-      for(let i=0;i<this.subjectCodeList.length;i++)
-      {
-        this.subjectService.getSubjectName(String(this.subjectCodeList[i])).subscribe(data=>{
-          let response:Response = data;
-          this.subject = response.data;
-          this.subjectList.push(this.subject);
-        },error=>{
-          window.alert(error.error.statusText);
-        })
-      }
+      // for(let i=0;i<this.subjectCodeList.length;i++)
+      // {
+      //   this.subjectService.getSubjectName(String(this.subjectCodeList[i])).subscribe(data=>{
+      //     let response:Response = data;
+      //     this.subject = response.data;
+      //     this.subjectList.push(this.subject);
+      //   },error=>{
+      //     window.alert(error.error.statusText);
+      //   })
+      // }
       },error=>{
         window.alert(error.error.statusText);
       })

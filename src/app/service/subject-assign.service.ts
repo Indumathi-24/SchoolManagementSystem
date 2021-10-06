@@ -38,4 +38,14 @@ export class SubjectAssignService {
   {
     return this.http.get(`${this.baseUrl}`+'/subjectCode/'+`${roomNo}`+'/'+`${id}`);
   }
+
+  getRoomNoList(assignIdList:number[]):Observable<Response>
+  {
+    return this.http.get(`${this.baseUrl}`+'/subjectAssignList/'+`${assignIdList}`);
+  }
+
+  getSubjectCodeList(roomNo:number,assignIdList:number[]):Observable<Response>
+  {
+    return this.http.get(`${this.baseUrl}`+'/subjectCodeList/'+`${roomNo}`+'/'+`${assignIdList}`);
+  }
 }

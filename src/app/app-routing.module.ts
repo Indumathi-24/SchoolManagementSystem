@@ -36,6 +36,7 @@ import { StudentLoginCredentialsComponent } from './studentDashboard/student-log
 import { StudentLoginComponent } from './studentDashboard/student-login/student-login.component';
 import { StudentForgotPasswordComponent } from './studentDashboard/student-forgot-password/student-forgot-password.component';
 import { ViewMarkClassComponent } from './teacherDashboard/mark/view-mark-class/view-mark-class.component';
+import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 
 const routes: Routes = [
   {
@@ -60,12 +61,11 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "headmasterlogin", component: HeadMasterLoginComponent },
   { path: "headmastercredentials", component: HeadMasterLoginCredentialsComponent },
-  
+  { path: "addmarkinteacher",component:AddTeacherComponent},
   { path: "teacherlogincredentials",component:TeacherLoginCredentialsComponent},
   { path: "teacherlogin",component:TeacherLoginComponent},
   { path: "studentlogincredentials",component:StudentLoginCredentialsComponent},
   { path: "loginforstudent",component:StudentLoginComponent},
-  { path: "studentforgotpassword",component:StudentForgotPasswordComponent},
   { path:"teachermodule",component:TeacherModuleComponent,children:[{
     path:"addmark",component:AddMarkComponent
   },
@@ -77,7 +77,8 @@ const routes: Routes = [
 },
 { path:"studentmodule",component:StudentModuleComponent,children:[{
   path:"viewresult",component:ViewParticularResultComponent
-},{path:"viewprofile",component:ViewStudentProfileComponent}]}
+},{path:"viewprofile",component:ViewStudentProfileComponent},
+ { path: "studentchangepassword",component:StudentForgotPasswordComponent}]}
 ];
 
 @NgModule({

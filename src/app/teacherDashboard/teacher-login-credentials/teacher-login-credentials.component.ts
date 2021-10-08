@@ -40,6 +40,7 @@ export class TeacherLoginCredentialsComponent implements OnInit {
       {
       this.router.navigate(['teacherlogin']);
       }
+      this.TeacherLoginCredentialsForm.reset();
     }
 
     else {

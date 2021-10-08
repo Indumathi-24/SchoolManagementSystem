@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <h4><b><i>ADDING MARK DETAILS</i></b></h4>
-    <form [formGroup]="AddMarkForm" #saveSubjectClassForm (ngSubmit)=saveMark()>
+    <form [formGroup]="AddMarkForm"  (ngSubmit)=saveMark()>
         <table class="table table-striped">
             <tr>
                 <th>CLASSES</th>
                 <td><select class="custom select" class="form-control" name="classes" (change)=getSubjects()
-                        formControlName="classes">
+                        formControlName="classes" required>
                         <option value="">Select Classes</option>
                         <option *ngFor="let class of classList">{{class.standard}}-{{class.section}}</option>
                     </select>
@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th>SUBJECTS</th>
-                <td><select class="custom select" class="form-control" name="subjectCode" formControlName="subjectCode">
+                <td><select class="custom select" class="form-control" name="subjectCode" formControlName="subjectCode" required>
                         <option value="">Select Subjects</option>
                         <option *ngFor="let subjectCode of subjectList">{{subjectCode}}</option>
                     </select>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th>STUDENTS</th>
-                <td><select class="custom select" class="form-control" name="rollNo" formControlName="rollNo">
+                <td><select class="custom select" class="form-control" name="rollNo" formControlName="rollNo" required>
                         <option value="">Select Students</option>
                         <option *ngFor="let student of studentList">{{student.rollNo}}</option>
                     </select>
@@ -29,17 +29,18 @@
             </tr>
             <tr>
                 <th>MARK</th>
-                <td><input type=number placeHolder="Enter Mark" class="form-control" name="mark" formControlName="mark">
+                <td><input type=number placeHolder="Enter Mark" class="form-control" name="mark" formControlName="mark" required>
                 </td>
             </tr>
             <tr>
                 <th>TERM TYPE</th>
-                <td><select class="custom select" class="form-control" name="termType" formControlName="termType">
+                <td><select class="custom select" class="form-control" name="termType" formControlName="termType" required>
                         <option value="">Select Term</option>
                         <option *ngFor="let term of termList">{{term}}</option>
                     </select></td>
             </tr>
         </table>
-        <button id="margin" type="submit" class="btn btn-success">ADD</button>
+        <button id="margin" [disabled]="!AddMarkForm.valid" type="submit" class="btn btn-success">ADD</button>
+        <button id="align" type="reset" class="btn btn-primary">RESET</button>
     </form>
     </div>

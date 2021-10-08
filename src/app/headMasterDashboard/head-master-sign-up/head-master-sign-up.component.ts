@@ -45,6 +45,7 @@ export class HeadMasterSignUpComponent implements OnInit {
     {
       this.router.navigate(['headmastercredentials']);
     }
+    this.HeadMasterSignUpForm.reset();
   }
   
  

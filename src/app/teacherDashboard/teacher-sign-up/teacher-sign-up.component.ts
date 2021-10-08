@@ -48,6 +48,7 @@ export class TeacherSignUpComponent implements OnInit {
     {
       this.router.navigate(['teacherlogincredentials']);
     }
+    this.TeacherSignUpForm.reset();
   }
 
   get name() { return this.TeacherSignUpForm.get('name'); }

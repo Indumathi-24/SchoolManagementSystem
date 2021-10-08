@@ -165,6 +165,7 @@ export class AddMarkComponent implements OnInit {
             break;
           }
       }
+      this.AddMarkForm.reset();
     }, error => {
       window.alert(error.error.statusText);
     })

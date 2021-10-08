@@ -110,8 +110,8 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mr-1">REGISTER</button>
-                        <button class="btn btn-secondary" type="reset">CANCEL</button>
+                        <button [disabled]="!TeacherSignUpForm.valid" class="btn btn-primary mr-1">REGISTER</button>
+                        <button class="btn btn-secondary" type="reset">RESET</button>
                     </div>
                 </form>
             </div>

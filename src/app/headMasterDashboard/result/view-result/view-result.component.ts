@@ -37,6 +37,7 @@ export class ViewResultComponent implements OnInit {
     this.classService.getRoomNo(this.ViewStudentsResult.get('standard')?.value,this.ViewStudentsResult.get('section')?.value).subscribe(data=>{
       let response:Response = data;
       this.roomNo = response.data;
+      console.log(this.roomNo);
     },error=>{
       window.alert(error.error.statusText)
     })

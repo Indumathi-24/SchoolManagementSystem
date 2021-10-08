@@ -1,6 +1,6 @@
 #margin
 {
-    margin-left: 12cm;
+    margin-left: 14cm;
 }
 
 table
@@ -12,3 +12,8 @@ table
  {
    text-align: center;
  }
+
+ #align
+{
+  margin-left: 1cm;
+}

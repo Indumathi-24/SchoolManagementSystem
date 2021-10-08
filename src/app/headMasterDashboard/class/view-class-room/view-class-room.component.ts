@@ -31,8 +31,11 @@ export class ViewClassRoomComponent implements OnInit {
     localStorage.setItem('class',JSON.stringify(classDetail));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    this.dialog.open(UpdateClassRoomComponent,dialogConfig);
+    dialogConfig.autoFocus = false;
+    this.dialog.open(UpdateClassRoomComponent,{
+      height: '55%',
+      width: '50%'
+  });
   }
   
   back()

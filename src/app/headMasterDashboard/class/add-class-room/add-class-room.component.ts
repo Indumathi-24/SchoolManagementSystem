@@ -35,6 +35,7 @@ export class AddClassRoomComponent implements OnInit {
    this.classRoomService.saveClassRoomDetails(classDetail).subscribe( data=>{
     let response:Response = data;
     window.alert(response.statusText);
+    this.ClassRoomForm.reset();
     } ,error =>{window.alert(error.error.statusText)});
   }
  

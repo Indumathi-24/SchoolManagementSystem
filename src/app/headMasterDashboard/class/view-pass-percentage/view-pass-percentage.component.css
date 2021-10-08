@@ -1,15 +1,17 @@
-h4
-{
-    margin-left:12cm;
-}
-
 table
 {
     margin-left:7cm;
     width:60%;
 }
-
-th,td
+#margin
 {
+    margin-left: 14cm;
+}
+h4
+{
+    text-align: center;
+}
+
+th,td{
     text-align: center;
 }

@@ -13,3 +13,8 @@ table
 {
     margin-left: 15.25cm;
 }
+
+th,td
+{
+    text-align: center;
+}

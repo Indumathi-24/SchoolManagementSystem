@@ -47,6 +47,9 @@ import { StudentLoginCredentialsComponent } from './studentDashboard/student-log
 import { StudentLoginComponent } from './studentDashboard/student-login/student-login.component';
 import { StudentForgotPasswordComponent } from './studentDashboard/student-forgot-password/student-forgot-password.component';
 import { ViewMarkClassComponent } from './teacherDashboard/mark/view-mark-class/view-mark-class.component';
+import { UpdatePassPercentageComponent } from './headMasterDashboard/class/update-pass-percentage/update-pass-percentage.component';
+import { ViewPassPercentageComponent } from './headMasterDashboard/class/view-pass-percentage/view-pass-percentage.component';
+import { UpdateMarkComponent } from './teacherDashboard/mark/update-mark/update-mark.component';
 
 
 
@@ -93,7 +96,10 @@ import { ViewMarkClassComponent } from './teacherDashboard/mark/view-mark-class/
     StudentLoginComponent,
     StudentForgotPasswordComponent,
     ViewMarkClassComponent,
-    AddTeacherComponent
+    AddTeacherComponent,
+    ViewPassPercentageComponent,
+    UpdatePassPercentageComponent,
+    UpdateMarkComponent
 
   ],
   imports: [
@@ -107,6 +113,6 @@ import { ViewMarkClassComponent } from './teacherDashboard/mark/view-mark-class/
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[AddParentComponent,UpdateClassRoomComponent,UpdateProfileComponent]
+  entryComponents:[AddParentComponent,UpdateClassRoomComponent,UpdateProfileComponent,UpdatePassPercentageComponent]
 })
 export class AppModule { }

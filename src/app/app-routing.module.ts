@@ -37,6 +37,7 @@ import { StudentLoginComponent } from './studentDashboard/student-login/student-
 import { StudentForgotPasswordComponent } from './studentDashboard/student-forgot-password/student-forgot-password.component';
 import { ViewMarkClassComponent } from './teacherDashboard/mark/view-mark-class/view-mark-class.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
+import { ViewPassPercentageComponent } from './headMasterDashboard/class/view-pass-percentage/view-pass-percentage.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     children: [{ path: "addclass", component: AddClassRoomComponent },
     {path: "viewclass", component: ViewClassRoomComponent},
     { path: "addstudent", component: AddStudentComponent },
+    { path:"viewpasspercentage",component:ViewPassPercentageComponent},
     { path: "viewstudent", component: ViewStudentComponent },
     { path: "addresult", component: AddResultComponent },
     { path: "updateresult", component: UpdateResultComponent },

@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label"><b>DATEOFBIRTH</b></label>
+                        <label class="col-sm-3 col-form-label"><b>DATE OF BIRTH</b></label>
                         <div class="form-group col-7">
 
                             <input type="date" placeholder="Enter DOB" formControlName="dateOfBirth"
@@ -113,8 +113,8 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary mr-1" type="submit">REGISTER</button>
-                        <button class="btn btn-secondary" type="reset">CANCEL</button>
+                        <button  [disabled]="!HeadMasterSignUpForm.valid" class="btn btn-primary mr-1" type="submit">REGISTER</button>
+                        <button class="btn btn-secondary" type="reset">RESET</button>
                     </div>
                 </form>
             </div>

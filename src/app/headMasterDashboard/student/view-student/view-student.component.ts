@@ -39,6 +39,7 @@ export class ViewStudentComponent implements OnInit {
       window.alert(error.error.statusText);
     })
   }
+  
   getDetails()
    {
      

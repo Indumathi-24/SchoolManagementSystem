@@ -44,4 +44,9 @@ export class ClassService {
   {
     return this.http.get(`${this.baseUrl}`+'/roomNoList/'+`${roomNoList}`);
   }
+
+  updatePassPercentage(roomNo:number,passPercentage:number,classDetail:ClassRoom):Observable<Response>
+  {
+    return this.http.put(`${this.baseUrl}`+'/'+`${roomNo}`+'/'+`${passPercentage}`,classDetail);
+  }
 }

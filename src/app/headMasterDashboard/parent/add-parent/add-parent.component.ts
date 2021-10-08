@@ -35,10 +35,8 @@ export class AddParentComponent implements OnInit {
       this.parentService.saveParentDetails(this.rollNo,parentDetail).subscribe(data=>{
         let response:Response =data;
         window.alert(response.statusText);
+        this.ParentForm.reset();
       },error=>{window.alert(error.error.statusText)})
-  }
-
-  cancel() {
-    this.dialogRef.close();
+      this.dialogRef.close();
   }
 }

@@ -4,18 +4,19 @@
     <table class="table table-striped">
       <tr>
         <th>CODE</th>
-        <td><input type="text" class="form-control" placeholder="Enter code" name="code" formControlName="code"></td>
+        <td><input type="text" class="form-control" placeholder="Enter code" name="code" formControlName="code" required></td>
       </tr>
 
       <tr>
         <th>NAME</th>
-        <td><input type="text" class="form-control" placeholder="Enter name" name="name" formControlName="name"></td>
+        <td><input type="text" class="form-control" placeholder="Enter name" name="name" formControlName="name" required></td>
       </tr>
 
       <tr>
         <td></td>
         <td>
-          <button type="submit" class="btn btn-success">ADD</button>
+          <button [disabled]="!AddSubjectForm.valid" type="submit" class="btn btn-success">ADD</button>
+          <button type="reset" class="btn btn-primary">RESET</button>
         </td>
       </tr>
     </table>

@@ -1,7 +1,10 @@
 #margin{
-    margin-left:13cm;
+    margin-left:15cm;
  }
-
+#align
+{
+    margin-left:1cm;
+}
  h4
 {
     text-align: center;

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h4><b><i>UPDATING CLASSROOM DETAILS</i> </b></h4>
+  <h6><b><i>UPDATING CLASSROOM DETAILS</i></b></h6>
   <form (ngSubmit)="updateClassDetails()">
     <table class="table table-striped">
       <tr>
@@ -17,14 +17,9 @@
         <td><input type="text" class="form-control" name="section" [(ngModel)]="classDetail.section"></td>
       </tr>
 
-      <tr>
-        <th>PASS PERCENTAGE</th>
-        <td><input type="number" class="form-control"  name="passPercentage"
-          [(ngModel)]="classDetail.passPercentage"></td>
-    </tr>
 
     </table>
     <button id="margin" type="submit" class="btn btn-success">UPDATE</button>
-    <button id="align" type="reset" (click)=cancel() class="btn btn-danger">CANCEL</button>
+    <button id="align" type="reset" class="btn btn-danger">RESET</button>
   </form>
 </div>

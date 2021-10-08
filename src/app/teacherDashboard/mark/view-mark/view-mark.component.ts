@@ -11,6 +11,8 @@ import { Mark } from 'src/app/model/mark';
 import { SubjectService } from 'src/app/service/subject.service';
 import { Subject } from 'src/app/model/subject';
 import { ClassRoom } from 'src/app/model/class-room';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { UpdateMarkComponent } from '../update-mark/update-mark.component';
 
 @Component({
   selector: 'app-view-mark',
@@ -32,14 +34,14 @@ export class ViewMarkComponent implements OnInit {
   subjectAssignIdList: number[] = [];
   subjectList: string[] = [];
   markList: Mark[] = [];
-  marks: number[] = [];
+  marks: number[] | any= [];
   length: number = 0;
   classList: ClassRoom[] = [];
   rollNo: number = 0;
   studentDetail: Student = new Student();
   roomNoList:number[]=[];
 
-  constructor(private subjectService: SubjectService, private markService: MarkService, private classService: ClassService, private studentService: StudentService, private subjectAssignService: SubjectAssignService, private teacherAssignService: TeacherAssignService) { }
+  constructor(private dialog:MatDialog,private subjectService: SubjectService, private markService: MarkService, private classService: ClassService, private studentService: StudentService, private subjectAssignService: SubjectAssignService, private teacherAssignService: TeacherAssignService) { }
 
   teacherId: number = Number(localStorage.getItem('user'));
 
@@ -111,6 +113,8 @@ export class ViewMarkComponent implements OnInit {
       this.subjectService.getSubjectName(this.ViewMarkForm.get('code')?.value).subscribe(data => {
         let response: Response = data;
         let subject: Subject = response.data;
+        localStorage.setItem('rollNo',this.ViewMarkForm.get('rollNo')?.value);
+        localStorage.setItem('code',this.ViewMarkForm.get('code')?.value);
       for (let i = 0; i < this.markList.length; i++) {
           switch (subject.name) {
             case 'Tamil':
@@ -141,6 +145,13 @@ export class ViewMarkComponent implements OnInit {
           }
         }
           console.log(this.marks);
+          for(let i=0;i<this.marks.length;i++)
+           {
+              if(this.marks[i]==-1)
+              {
+                this.marks[i]='NE';
+              }
+           }
         }, error => {
           window.alert(error.error.statusText);
         })
@@ -148,5 +159,13 @@ export class ViewMarkComponent implements OnInit {
     }, error => {
       window.alert(error.error.statusText);
     })
+  }
+
+  update()
+  {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    this.dialog.open(UpdateMarkComponent,dialogConfig);
   }
 }

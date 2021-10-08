@@ -31,7 +31,7 @@ export class ViewProfileComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     this.dialog.open(UpdateProfileComponent,{
-      height: '90%',
+      height: '80%',
       width: '60%'
   });
   }

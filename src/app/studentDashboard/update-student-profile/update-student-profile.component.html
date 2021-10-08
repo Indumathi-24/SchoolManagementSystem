@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h5><b><i>UPDATING CLASSROOM DETAILS</i> </b></h5>
+  <h5><b><i>UPDATE PROFILE</i> </b></h5>
   <form (ngSubmit)="updatePersonalDetails()">
     <table class="table table-striped">
       <tr>
@@ -9,7 +9,7 @@
 
       </tr>
       <tr>
-        <th>DATEOFBIRTH</th>
+        <th>DATE OF BIRTH</th>
         <td><input type="date" class="form-control" name="standard" [(ngModel)]="student.dateOfBirth"></td>
       </tr>
 
@@ -49,6 +49,6 @@
 
     </table>
     <button id="margin" type="submit" class="btn btn-success">UPDATE</button>
-    <button id="align" type="reset" (click)=cancel() class="btn btn-danger">CANCEL</button>
+    <button id="align" type="reset" class="btn btn-primary">RESET</button>
   </form>
 </div>

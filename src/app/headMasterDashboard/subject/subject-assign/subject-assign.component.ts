@@ -15,7 +15,7 @@ import { SubjectClass } from 'src/app/model/subject-class';
 })
 export class SubjectAssignComponent implements OnInit {
 
-  AddSubjectClassForm = new FormGroup({
+  AssignSubjectClassForm = new FormGroup({
     standard:new FormControl(''),
     section:new FormControl(''),
     code:new FormControl('')
@@ -25,6 +25,7 @@ export class SubjectAssignComponent implements OnInit {
   sectionList:string[]=['A','B','C','D','E'];
   subjectList:Subject[]=[];
   roomNo:number=0;
+  subjectCodeList:string[]=[];
   constructor(private subjectService:SubjectService,private classRoomService:ClassService,private subjectAssignService:SubjectAssignService) { }
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class SubjectAssignComponent implements OnInit {
 
   getRoomNo()
   {
-    this.classRoomService.getRoomNo(this.AddSubjectClassForm.get('standard')?.value,this.AddSubjectClassForm.get('section')?.value).subscribe(data=>{
+    this.classRoomService.getRoomNo(this.AssignSubjectClassForm.get('standard')?.value,this.AssignSubjectClassForm.get('section')?.value).subscribe(data=>{
       let response:Response = data;
       this.roomNo = response.data;
     })
@@ -53,20 +54,33 @@ export class SubjectAssignComponent implements OnInit {
     let classDetail:ClassRoom = new ClassRoom();
     classDetail.roomNo =this.roomNo;
     let subjectDetail:Subject = new Subject();
-    let subjectCode:string = this.AddSubjectClassForm.get('code')?.value;
+    let subjectCode:string = this.AssignSubjectClassForm.get('code')?.value;
     let subjectCodeList:string[];
     subjectCodeList = subjectCode.split('-');
     subjectDetail.code = subjectCodeList[0];
     const subjectClass:SubjectClass = new SubjectClass();
     subjectClass.classDetail = classDetail;
     subjectClass.subject = subjectDetail;
-    this.subjectAssignService.assignSubjectClass(subjectClass).subscribe(data=>
+    this.subjectAssignService.viewSubjectClass(this.roomNo).subscribe(data=>{
+      let response:Response = data;
+      this.subjectCodeList= response.data;
+      if(this.subjectCodeList.length<5)
       {
-        let response:Response = data;
-        window.alert(response.statusText);
-      },
-      error=>{
-        window.alert(error.error.message);
-      })
+        console.log(this.subjectCodeList.length);
+        this.subjectAssignService.assignSubjectClass(subjectClass).subscribe(data=>
+        {
+          let response:Response = data;
+          window.alert(response.statusText);
+          this.AssignSubjectClassForm.reset();
+        },
+        error=>{
+          window.alert(error.error.message);
+        })
+      }
+      else{
+        window.alert("Subjects are already assigned to this class");
+      }
+    })
+   
   }
 }

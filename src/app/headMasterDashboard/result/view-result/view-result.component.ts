@@ -24,7 +24,7 @@ export class ViewResultComponent implements OnInit {
   classList:ClassRoom[]=[];
   studentList:Student[]=[];
   resultDetail:Result=new Result();
-  resultList:Result[]=[];
+  resultList:Result[] | any=[];
    length:number =0;
    roomNo:number=0;
   constructor(private classService:ClassService,private studentService:StudentService,private resultService:ResultService,private router:Router) { }
@@ -51,7 +51,18 @@ export class ViewResultComponent implements OnInit {
         this.length = this.resultList.length;
         for(let i=0;i<this.resultList.length;i++)
         {
-          console.log(this.resultList[i]);
+          if(this.resultList[i].term1==-1)
+          {
+            this.resultList[i].term1 = 'NE';
+          }
+          if(this.resultList[i].term2==-1)
+          {
+            this.resultList[i].term2 = 'NE';
+          }
+          if(this.resultList[i].term3==-1)
+          {
+            this.resultList[i].term3 = 'NE';
+          }
         }
       },error=>{
         window.alert(error.error.statusText)

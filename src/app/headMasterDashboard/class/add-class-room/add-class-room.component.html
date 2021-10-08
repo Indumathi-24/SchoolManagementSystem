@@ -5,12 +5,12 @@
             <tr>
                 <th>ROOMNO</th>
                 <td><input type="number" class="form-control" placeholder="Enter RoomNo" name="roomNo"
-                        formControlName="roomNo"></td>
+                        formControlName="roomNo" required></td>
             </tr>
 
             <tr>
                 <th>STANDARD</th>
-                <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+                <td><select class="custom select" class="form-control" name="standard" formControlName="standard" required>
                         <option value="">Select Standard</option>
                         <option *ngFor="let standard of standardList">{{standard}}</option>
                     </select>
@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th>SECTION</th>
-                <td><select class="custom select" class="form-control" name="section" formControlName="section">
+                <td><select class="custom select" class="form-control" name="section" formControlName="section" required>
                         <option value="">Select Section</option>
                         <option *ngFor="let section of sectionList">{{section}}</option>
                     </select>
@@ -28,14 +28,14 @@
             <tr>
                 <th>PASS PERCENTAGE</th>
                 <td><input type="number" class="form-control" placeholder="Enter Percentage" name="passPercentage"
-                        formControlName="passPercentage"></td>
+                        formControlName="passPercentage" required></td>
             </tr>
 
             <tr>
                 <td></td>
                 <td>
-                    <button id="margin" type="submit" class="btn btn-success">ADD</button>
-                    <button id="margin" type="button" (click)=back() class="btn btn-primary">BACK</button>
+                    <button id="margin" [disabled]="!ClassRoomForm.valid" type="submit" class="btn btn-success">ADD</button>
+                    <button id="margin" type="reset" class="btn btn-primary">RESET</button>
                 </td>
             </tr>
         </table>

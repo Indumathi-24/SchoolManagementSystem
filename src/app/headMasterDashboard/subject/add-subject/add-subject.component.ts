@@ -30,6 +30,7 @@ export class AddSubjectComponent implements OnInit {
       {
         let response:Response = data;
         window.alert(response.statusText);
+        this.AddSubjectForm.reset();
       },error=>{
         window.alert(error.error.statusText);
       })

@@ -33,7 +33,7 @@ export class ViewMarkClassComponent implements OnInit {
   length:number=0;
   studentEntity:Student=new Student();
   rollNoList:number[]=[];
-  marks:number[]=[];
+  marks:number[] | any =[];
   nameList:string[]=[];
   term1List:number[]=[];
   term2List:number[]=[];
@@ -145,6 +145,13 @@ export class ViewMarkClassComponent implements OnInit {
                 break;
               }
             }
+            for(let i=0;i<this.marks.length;i++)
+           {
+              if(this.marks[i]==-1)
+              {
+                this.marks[i]='NE';
+              }
+           }
            this.getMarks(this.markList.length);
       }  
         }, error => {

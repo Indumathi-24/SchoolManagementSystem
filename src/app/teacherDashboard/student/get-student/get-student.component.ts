@@ -29,7 +29,7 @@ export class GetStudentComponent implements OnInit {
   roomNoList: number[] = [];
   classList: ClassRoom[] = [];
   subjectList: string[] = [];
-  constructor(private subjectAssignService: SubjectAssignService, private teacherAssignService: TeacherAssignService, private classRoomService: ClassService, private studentService: StudentService) { }
+  constructor(private subjectAssignService: SubjectAssignService, private teacherAssignService: TeacherAssignService, private classService: ClassService, private studentService: StudentService) { }
 
   teacherId: number = Number(localStorage.getItem('user'));
 
@@ -37,52 +37,51 @@ export class GetStudentComponent implements OnInit {
     this.teacherAssignService.getSubjectClassAssignId(this.teacherId).subscribe(data => {
       let response: Response = data;
       this.subjectAssignIdList = response.data;
-      for (let i = 0; i < this.subjectAssignIdList.length; i++) {
-        this.subjectAssignService.getRoomNoForId(this.subjectAssignIdList[i]).subscribe(data => {
-          let response: Response = data;
-          let roomNo: number = response.data;
-          this.classRoomService.getClass(roomNo).subscribe(data => {
-            let response: Response = data;
-            this.classList.push(response.data);
-          })
-        }, error => {
-          window.alert(error.error.statusText);
-        })
-      }
+      console.log(this.subjectAssignIdList);
+    this.subjectAssignService.getRoomNoList(this.subjectAssignIdList).subscribe(data=>{
+      let response: Response = data;
+      this.roomNoList = response.data;
+      console.log(this.roomNoList);
+    
+    this.classService.getClassList(this.roomNoList).subscribe(data=>{
+      let response: Response = data;
+      this.classList = response.data;
+      console.log(this.classList);
     }, error => {
       window.alert(error.error.statusText);
     })
+    }, error => {
+      window.alert(error.error.statusText);
+    })
+  }, error => {
+    window.alert(error.error.statusText);
+  })
   }
 
-  getSubjects() {
+  getSubjects()
+  {
     let classes: string = this.GetStudentForm.get('classes')?.value;
     let classesList: string[] = classes.split('-');
-    this.classRoomService.getRoomNo(classesList[0], classesList[1]).subscribe(data => {
+    this.classService.getRoomNo(classesList[0], classesList[1]).subscribe(data => {
       let response: Response = data;
       this.roomNo = response.data;
-      for (let i = 0; i < this.subjectAssignIdList.length; i++) {
-        this.subjectAssignService.getSubjectCode(this.roomNo, this.subjectAssignIdList[i]).subscribe(data => {
-          let response: Response = data;
-          let subjectCode: string = response.data;
-          if (subjectCode != null) {
-            this.subjectList.push(subjectCode);
-          }
-        }, error => {
-          window.alert(error.error.statusText);
-        })
-        this.subjectList = [];
-      }
+    this.subjectAssignService.getSubjectCodeList(this.roomNo,this.subjectAssignIdList).subscribe(data=>{
+      let response: Response = data;
+      this.subjectList = response.data;
+      }, error => {
+        window.alert(error.error.statusText);
+      })
       this.getStudents();
     }, error => {
       window.alert(error.error.statusText);
     })
-
   }
   getStudents() {
     this.studentService.getAllStudent(this.roomNo).subscribe(data => {
       let response: Response = data;
       this.studentList = response.data;
       this.length = this.studentList.length;
+      console.log(this.studentList);
     }, error => {
       window.alert(error.error.statusText);
     })

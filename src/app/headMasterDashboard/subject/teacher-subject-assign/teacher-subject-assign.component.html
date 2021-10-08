@@ -4,7 +4,7 @@
         <table class="table table-striped">
             <tr>
                 <th>STANDARD</th>
-                <td><select class="custom select" class="form-control" name="standard" formControlName="standard">
+                <td><select class="custom select" class="form-control" name="standard" formControlName="standard" required>
                         <option value="">Select Standard</option>
                         <option *ngFor="let standard of standardList">{{standard}}</option>
                     </select>
@@ -13,7 +13,7 @@
             <tr>
                 <th>SECTION</th>
                 <td><select class="custom select" class="form-control" name="section" (change)=getRoomNo()
-                        formControlName="section">
+                        formControlName="section" required>
                         <option value="">Select Section</option>
                         <option *ngFor="let section of sectionList">{{section}}</option>
                     </select>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th>SUBJECTS</th>
-                <td><select class="custom select" class="form-control" name="subjectCode" formControlName="subjectCode">
+                <td><select class="custom select" class="form-control" name="subjectCode" formControlName="subjectCode" required>
                         <option value="">Select Subjects</option>
                         <option *ngFor="let subject of subjectList">{{subject.code}}-{{subject.name}}</option>
                     </select>
@@ -30,7 +30,7 @@
 
             <tr>
                 <th>TEACHERS</th>
-                <td><select class="custom select" class="form-control" name="teacherId" formControlName="teacherId">
+                <td><select class="custom select" class="form-control" name="teacherId" formControlName="teacherId" required>
                         <option value="">Select Name</option>
                         <option *ngFor="let teacher of teacherList">{{teacher.id}}-{{teacher.name}}</option>
                     </select>
@@ -38,5 +38,6 @@
             </tr>
 
         </table>
-        <button id="margin" type="submit" class="btn btn-success">ADD</button>
+        <button id="margin" [disabled]="!TeacherSubjectForm.valid" type="submit" class="btn btn-success">ADD</button>
+        <button id="align" [disabled]="!TeacherSubjectForm.valid" type="reset" class="btn btn-primary">RESET</button>
     </form>

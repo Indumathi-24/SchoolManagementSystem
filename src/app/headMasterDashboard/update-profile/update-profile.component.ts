@@ -32,10 +32,7 @@ export class UpdateProfileComponent implements OnInit {
       },error=>{
         window.alert(error.error.statusText);
       })
+      this.dialogRef.close();
   }
 
-  cancel()
-  {
-     this.dialogRef.close();
-  }
 }

@@ -34,9 +34,8 @@ export class UpdateClassRoomComponent implements OnInit {
     },error=>{
       window.alert(error.error.statusText);
     });
-  }
-
-  cancel() {
     this.dialogRef.close();
   }
+
+ 
 }

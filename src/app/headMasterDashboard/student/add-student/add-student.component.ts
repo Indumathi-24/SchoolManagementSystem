@@ -26,7 +26,8 @@ export class AddStudentComponent implements OnInit {
      gender:new FormControl(''),
      address:new FormControl(''),
      standard:new FormControl('',[Validators.required]),
-     section:new FormControl('',[Validators.required])
+     section:new FormControl('',[Validators.required]),
+     password:new FormControl({value:'',disabled:'true'})
    })
    studentDetail: Student = new Student();
    classList: ClassRoom[] =[];
@@ -47,11 +48,16 @@ export class AddStudentComponent implements OnInit {
     this.classRoomService.getRoomNo(this.StudentForm.get('standard')?.value,this.StudentForm.get('section')?.value).subscribe(data=>{
       let response:Response = data;
       this.roomNo = response.data;
+      this.getPassword();
     },error=>{
       window.alert(error.error.statusText)
     })
   }
-
+  password:string='';
+  getPassword()
+  {
+    this.password = Math.random().toString(16).substr(2, 8);
+  }
   saveStudent()
   {
       this.studentDetail.rollNo = this.StudentForm.get('rollNo')?.value;
@@ -59,12 +65,13 @@ export class AddStudentComponent implements OnInit {
       this.studentDetail.dateOfBirth =this.StudentForm.get('dateOfBirth')?.value;
       this.studentDetail.gender = this.StudentForm.get('gender')?.value;
       this.studentDetail.address = this.StudentForm.get('address')?.value;
-      this.studentDetail.password = Math.random().toString(16).substr(2, 8);
+      this.studentDetail.password = this.password;
       console.log(this.studentDetail);
       this.studentService.saveStudent(this.studentDetail,this.roomNo).subscribe(data=>{
         let response:Response = data;
         this.studentId = response.data;
         window.alert(response.statusText);
+        
 
       console.log("inside Result");
       const resultDetail:Result = new Result();
@@ -115,6 +122,7 @@ export class AddStudentComponent implements OnInit {
         })
       }
     }
+    this.StudentForm.reset();
   },error=>{
     window.alert(error.error.statusText)
   })
@@ -124,12 +132,7 @@ export class AddStudentComponent implements OnInit {
       
 localStorage.setItem('rollNo',this.StudentForm.get('rollNo')?.value);
       
-  }
-  back()
-  {
-      this.router.navigate(['headmastermodule']);
-  }
-
+}
   saveParentDetails()
   {
     const dialogConfig = new MatDialogConfig();

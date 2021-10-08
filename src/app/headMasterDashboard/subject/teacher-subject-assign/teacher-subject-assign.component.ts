@@ -107,11 +107,13 @@ export class TeacherSubjectAssignComponent implements OnInit {
           this.teacherAssignService.assignTeacherSubject(teacherSubjectDetail).subscribe(data=>{
             let response:Response = data;
             window.alert(response.statusText);
+            this.TeacherSubjectForm.reset();
           },
-          
           error=>{
-            window.alert(error.error.statusText);
-          })
+            window.alert("Teacher Already Assigned to Subject")
+          //   window.alert(error.error.message);
+           }
+          )
         },error=>{
           window.alert(error.error.statusText);
         })
